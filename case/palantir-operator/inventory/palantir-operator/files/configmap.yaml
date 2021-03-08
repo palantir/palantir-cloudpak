@@ -67,7 +67,7 @@ data:
     - name: status-sidecar-mutator
       version: 1.37.0
     - name: expected-state
-      version: 1.59.0
+      version: 1.68.0
   runtime.yml: |
     logging:
       level: debug
