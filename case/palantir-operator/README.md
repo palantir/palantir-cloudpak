@@ -2,7 +2,7 @@
 <a href=https://autorelease.bots.palantir.build/deployability/foundry-cpd-module><img src=https://shields.palantir.build/badge/Perform%20an-Autorelease-brightgreen.svg alt=Autorelease></a>
 </p>
 
-# palantir-cpd-module
+# palantir-operator
 
 This repository provides a CASE for the palantir-operator to install and run Palantir for Cloud Pak For Data (P4CP4D) on along side Cloud Pak For Data (CP4D) 3.5+ in an Open Shift Compute Platform (OSCP) 4.5+.
 
