@@ -39,11 +39,11 @@ data:
     - name: vault-etcd
       version: 3.4.517
     - name: launchcontrol-deployment
-      version: 1.82.1
+      version: 1.84.0
     - name: launchpod
       version: 1.17.0
     - name: rubix-auth-deployment
-      version: 1.103.0
+      version: 1.117.1
     - name: configuration-renderer
       version: 1.61.0
     - name: witchcraft-service-operator
@@ -53,7 +53,7 @@ data:
     - name: generated-secret-controller
       version: 1.23.1
     - name: rollout-controller
-      version: 1.22.0
+      version: 1.25.0
     - name: envoy-deployment
       version: 1.25.0
     - name: user-credential-manager
@@ -63,9 +63,9 @@ data:
     - name: ingress-manager
       version: 1.24.0
     - name: k8s-service-manager
-      version: 1.14.0
+      version: 1.17.0
     - name: status-sidecar-mutator
-      version: 1.37.0
+      version: 1.39.0
     - name: expected-state
       version: 1.68.0
   runtime.yml: |
