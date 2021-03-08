@@ -23,7 +23,9 @@ _Cloud Providers_
 
 P4CP4D can be run on any cloud provider so long as the following are true:
 
-- An OpenShift storage class is available that supports 3,000 IPS with READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
+- An OpenShift storage class is available that supports:
+    - 3,000 IPS with a sustained throughput of 256MiB/s
+    - READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
 - A blob storage service that offers an AWS S3 compatible API.
 
 ## Pre-requisites
