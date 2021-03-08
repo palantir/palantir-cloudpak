@@ -57,7 +57,7 @@ data:
     - name: envoy-deployment
       version: 1.25.0
     - name: user-credential-manager
-      version: 0.1.31
+      version: 0.1.33
     - name: mesh-control-plane
       version: 1.32.0
     - name: ingress-manager
@@ -67,7 +67,7 @@ data:
     - name: status-sidecar-mutator
       version: 1.39.0
     - name: expected-state
-      version: 1.67.0
+      version: 1.68.0
   runtime.yml: |
     logging:
       level: debug
