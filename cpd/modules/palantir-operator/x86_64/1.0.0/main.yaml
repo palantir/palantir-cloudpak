@@ -1,0 +1,12 @@
+type: module
+category: template-yamls
+registry-reference: prod-entitled-registry
+images:
+  - name: palantir-operator
+    tag: 1.0.0
+
+templateModuleFiles:
+  - name: palantir-operator.yaml
+  - name: palantir-operator-configmap.yaml
+
+installOverride: install-override.yaml

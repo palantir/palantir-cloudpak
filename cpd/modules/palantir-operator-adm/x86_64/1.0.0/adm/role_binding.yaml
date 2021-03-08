@@ -1,0 +1,17 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: palantir-operator
+  labels:
+    app.kubernetes.io/name: "palantir-operator"
+    app.kubernetes.io/managed-by: "palantir.com"
+    app.kubernetes.io/instance: "palantir-operator"
+
+subjects:
+- kind: ServiceAccount
+  name: palantir-operator
+roleRef:
+  kind: Role
+  name: palantir-operator
+  apiGroup: rbac.authorization.k8s.io
+

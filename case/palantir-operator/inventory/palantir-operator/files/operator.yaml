@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: palantir-operator
+  labels:
+    app.kubernetes.io/name: "palantir-operator"
+    app.kubernetes.io/managed-by: "palantir.com"
+    app.kubernetes.io/instance: "palantir-operator"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: palantir-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "palantir-operator"
+        app.kubernetes.io/managed-by: "palantir.com"
+        app.kubernetes.io/instance: "palantir-operator"
+        name: palantir-operator
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: palantir-operator
+            items:
+              - key: install.yml
+                path: install.yml
+              - key: runtime.yml
+                path: runtime.yml
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 3
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      serviceAccountName: palantir-operator
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: palantir-operator
+          image: "docker.external.palantir.build/deployability/palantir-operator:0.2.22"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            readOnlyRootFilesystem: false
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+          env:
+            - name: OPERATOR_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/opt/palantir/services/palantir-operator/var/conf"

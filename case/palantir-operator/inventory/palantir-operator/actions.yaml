@@ -1,0 +1,21 @@
+actions:
+  actionDefs:
+    install:
+      metadata:
+        name: "install"
+        description: "Installs the Palantir for Cloudpak for Data Operator"
+      roles:
+        - clusterAdmin
+      requires:
+        - "/case/prereqs/k8sDistros/openshift"
+        - "/case/prereqs/k8sResources/workerIntelLinux"
+        - "/case/prereqs/k8sResources/restrictedSCC"
+        - "/case/prereqs/k8sResourceVersions/rbac"
+      k8sPermissions:
+        rules:
+        - rule:
+            group: "*"
+            resource: "*"
+            verbs:
+            - '*'
+            version: ""

@@ -1,0 +1,27 @@
+prereqs:
+  prereqDefs:
+    k8sDistros:
+      openshift:
+        distribution: openshift
+        semver: ">=4.5.0"
+    k8sResources:
+      workerIntelLinux:
+        kind: node
+        apiGroup: ""
+        version: v1
+        selector:
+          matchExpressions:
+          - {key: beta.kubernetes.io/arch, operator: In, values: [amd64]}
+          - {key: beta.kubernetes.io/os, operator: In, values: [linux]}
+          - {key: node-role.kubernetes.io/worker, operator: Exists}
+      restrictedSCC:          
+        kind: SecurityContextConstraints
+        apiGroup: security.openshift.io
+        name: restricted
+        version: v1
+    k8sResourceVersions:
+      rbac:
+        kind: ClusterRole
+        apiGroup: rbac.authorization.k8s.io
+        version: v1
+

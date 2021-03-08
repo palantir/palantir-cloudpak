@@ -1,0 +1,7 @@
+roles:
+  roleDefs:
+    clusterAdmin:
+      metadata:
+        displayDescription: A user who has cluster administrator permissions.
+        displayName: Cluster Admin
+        name: clusterAdmin

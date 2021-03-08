@@ -1,0 +1,73 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/name: palantir-operator
+    app.kubernetes.io/managed-by: palantir.com
+    app.kubernetes.io/instance: palantir-operator
+  name: palantir-operator
+data:
+  install.yml: |
+    use-console-log: true
+    server:
+      address: 0.0.0.0
+      port: 3756
+      context-path: /palantir-operator
+    cluster-config:
+      entitlement-key: {{ .ibmEntitlementKey }}
+      registration-key: {{ .palantirRegistrationKey }}
+      artifactory-creds-secret: palantir-ext-creds
+      own-namespace-env-var: OPERATOR_NAMESPACE
+      instance-name: {{ .instanceName }}
+      frontdoor-config:
+        cpd-domain: {{ .cp4dFQDN }}
+        base-64-cert: {{ .proxyCertificateBase64 }}
+        base-64-key: {{ .proxyPrivateKeyBase64 }}
+      envoy-service-spec:
+        ports:
+        - port: 6443
+          name: envoy
+          protocol: TCP
+        selector:
+          rubix-app: envoy
+      image-registry-prefix: {{ .imageRegistryPrefix }}
+      storage-class: {{ .storageClass }}
+      application-class: small
+    applications:
+    - name: vault-deployment
+      version: 2.84.1
+    - name: vault-etcd
+      version: 3.4.517
+    - name: launchcontrol-deployment
+      version: 1.82.1
+    - name: launchpod
+      version: 1.17.0
+    - name: rubix-auth-deployment
+      version: 1.103.0
+    - name: configuration-renderer
+      version: 1.61.0
+    - name: witchcraft-service-operator
+      version: 1.69.0
+    - name: discovery-generator
+      version: 1.41.0
+    - name: generated-secret-controller
+      version: 1.23.1
+    - name: rollout-controller
+      version: 1.22.0
+    - name: envoy-deployment
+      version: 1.25.0
+    - name: user-credential-manager
+      version: 0.1.26
+    - name: mesh-control-plane
+      version: 1.32.0
+    - name: ingress-manager
+      version: 1.24.0
+    - name: k8s-service-manager
+      version: 1.14.0
+    - name: status-sidecar-mutator
+      version: 1.37.0
+    - name: expected-state
+      version: 1.59.0
+  runtime.yml: |
+    logging:
+      level: debug
