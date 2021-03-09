@@ -63,7 +63,7 @@ data:
     - name: ingress-manager
       version: 1.24.0
     - name: k8s-service-manager
-      version: 1.17.0
+      version: 1.18.1
     - name: status-sidecar-mutator
       version: 1.39.0
     - name: expected-state
