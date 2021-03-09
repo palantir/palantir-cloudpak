@@ -6,7 +6,9 @@
 
 This repository provides a CPD Assembly module and a CASE for the palantir-operator to install and run Palantir for IBM Cloud Pak For Data (P4CP4D) on along side Cloud Pak For Data (CP4D) 3.5+ in an Open Shift Compute Platform (OSCP) 4.5+.
 
-## Supported Platforms, Architectures and Cloud Providers
+## Planning
+
+### Supported Platforms, Architectures and Cloud Providers
 
 Palantir for IBM Cloudpak for Data supports the following:
 
@@ -23,11 +25,32 @@ _Cloud Providers_
 P4CP4D can be run on any cloud provider so long as the following are true:
 
 - An OpenShift storage class is available that supports:
-    - 3,000 IPS with a sustained throughput of 256MiB/s
-    - READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
+  - 3,000 IPS with a sustained throughput of 256MiB/s
+  - READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
 - A blob storage service that offers an AWS S3 compatible API.
 
-## Pre-requisites
+### Security Considerations
+
+Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit. 
+
+*Encryption in transit*:
+
+- Communication between services occurs over TLS 1.2
+
+*Encryption at rest*:
+
+- All Foundry Filesystem (blob storage) is secured with application level encryption. See below for details.
+- Encryption of metadata and other local storage should be provided passively via encrypted storage partitions exposed via configured storage classes in OpenShift.
+
+*Palantir Foundry Filesystem Encryption*:
+
+- Each file encrypted with distinct symmetric key (AES-256)
+- AES keys are envelope encrypted with an asymmetric keypair (RSA-2048) known only to the Palantir Foundry Catalog
+- Access to Palantir Foundry Filesystem granted with narrowly-scoped temporary security credentials.  
+
+## Installation
+
+### Pre-requisites
 
 Before installation can happen, the IP addresses that network traffic will egress the OSCP cluster from must be added to a security group for communicating with Palantir's delivery environment and container registry. This must be done by Palantir support prior to installation via the Palantir operator.
 
@@ -40,7 +63,7 @@ Finally, in addition to the Palantir provided information, you must have the fol
 
 - An IBM entitlement key that is entitled to Palantir for IBM Cloudpak for Data.
 
-## How to install Palantir for IBM Cloudpak for Data
+### How to install Palantir for IBM Cloudpak for Data
 
 The following instructions assume you have either checked out this git repository or have downloaded a release TGZ of the CPD Assembly module. Follow these steps to install Palantir for Cloud Pak for Data against an OpenShift Compute Platform that already has CP4D installed.
 
@@ -54,7 +77,7 @@ The following instructions assume you have either checked out this git repositor
 8. Run `run.sh install` to install the palantir-operator into this namespace.
 9. If the installation fails and you want to retry it again, you will need to run `run.sh uninstall` first before trying again.
 
-## Operator scoping and use of namespaces
+### Operator scoping and use of namespaces
 
 The Palantir operator to install P4CP4D results in the following OpenShift namespaces being created:
 
