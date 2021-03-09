@@ -12,8 +12,7 @@ Palantir for IBM Cloudpak for Data supports the following:
 
 _Platforms_
 
-- Open Shift Compute Platform versions: 4.5+
-- Cloudpak for Data: 3.5
+- Cloudpak for Data 3.5 on Open Shift Compute Platform 4.5+
 
 _Architectures_
 
