@@ -1,13 +1,13 @@
 --- 
 fileservers: 
   -
-    url: "http://localhost:8000/"
+    url: "http://raw.github.com/palantir/palantir-cloudpak/develop/cpd"
   - 
     url: "https://raw.github.com/IBM/cloud-pak/master/repo/cpd/3.5"
 registry: 
   - 
     name: prod-entitled-registry
-    namespace: <TODO: Replace with $NAMESPACe>
+    namespace: <TODO: Replace with $NAMESPACE>
     url: cp.icr.io/cp/cpd
     username: cp
     apikey: <TODO: Replace with $IBM_ICR_API_KEY>

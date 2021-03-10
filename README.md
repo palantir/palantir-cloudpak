@@ -39,7 +39,7 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 *Encryption in transit*:
 
-- Communication between services occurs over TLS 1.2
+- Communication between services occurs over TLS 1.2 using strong, industry-standard ciphersuites.
 
 *Encryption at rest*:
 
