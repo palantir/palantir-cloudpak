@@ -19,6 +19,6 @@ if [[ -f "$file" ]]; then
     echo "$file exists. Not downlooading it again"
 else
     curl -LO -C- -k https://github.com/IBM/cpd-cli/releases/download/v3.5.2/cpd-cli-darwin-SE-3.5.2.tgz
-    tar -xvf cpd-cli-darwin-SE-3.5.2.tgz cpd-cli plugins/
+    tar -xvf cpd-cli-darwin-SE-3.5.2.tgz cpd-cli plugins/ LICENSES/
     rm cpd-cli-darwin-SE-3.5.2.tgz
 fi

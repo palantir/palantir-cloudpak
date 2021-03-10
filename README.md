@@ -4,25 +4,29 @@
 
 # palantir-cloudpak
 
-This repository provides a CPD Assembly module and a CASE for the palantir-operator to install and run Palantir for IBM Cloud Pak For Data (P4CP4D) on along side Cloud Pak For Data (CP4D) 3.5+ in an Open Shift Compute Platform (OSCP) 4.5+.
+This repository provides a CPD Assembly module for the palantir-operator to install and run Palantir for IBM Cloud Pak For Data (P4CP4D) on along side Cloud Pak For Data 3.5+ in an Open Shift Container Platform (OCP) 4.5+.
 
 ## Planning
 
+You can install Palantir for IBM Cloud Pak for Data on top of Cloud Pak for Data.
+
 ### Supported Platforms, Architectures and Cloud Providers
 
-Palantir for IBM Cloudpak for Data supports the following:
+To install Palantir for IBM Cloud Pak for Data, you must have the following software already installed on your cluster:
 
-_Platforms_
-
-- Cloudpak for Data 3.5 on Open Shift Compute Platform 4.5+
+- Red hat OpenShift Container Platform version 4.5 or later.
+- IBM Cloud Pak for Data 3.5 or later refreshes. For more information, see:
+  - [Planning for Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/plan/planning.html)
+  - [Installing Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html)
+- IBM Watson Knowledge Catalog version 3.5.x.
 
 _Architectures_
 
-- x86_64
+Palantir for IBM Cloud Pak for Data must be run on compute nodes that support the x86_64 architecture.
 
 _Cloud Providers_
 
-P4CP4D can be run on any cloud provider so long as the following are true:
+Palantir for IBM Cloud Pak for Data can be run on any cloud provider so long as the following are true:
 
 - An OpenShift storage class is available that supports:
   - 3,000 IOPS with a sustained throughput of 256MiB/s
@@ -31,11 +35,11 @@ P4CP4D can be run on any cloud provider so long as the following are true:
 
 ### Security Considerations
 
-Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit. 
+Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 *Encryption in transit*:
 
-- Communication between services occurs over TLS 1.2
+- Communication between services occurs over TLS 1.2 using strong, industry-standard ciphersuites.
 
 *Encryption at rest*:
 
@@ -47,34 +51,101 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 - Each file encrypted with distinct symmetric key (AES-256)
 - AES keys are envelope encrypted with an asymmetric keypair (RSA-2048) known only to the Palantir Foundry Catalog
 
-## Installation
+### Licenses
+
+Additionally, to install the software, you must have the following entitlement keys:
+
+- An IBM entitlement key that includes entitlements for Cloud Pak for Data and Palantir for Cloud Pak for Data. For details on how to get your entitlement key, see [Obtaining the installation files](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/installation-files.html) in the IBM Cloud Pak for Data documentation.  
+- A Palantir registration key. For details on how to get your registration key, see [Obtaining your registration key](#obtaining-your-registration-key)
+​
+
+### Obtaining your registration key
+
+Before you can install Palantir, you must provide information about your cluster to Palantir.
+​
+Send the following information to Palantir:
+
+- The IP addresses that are used for outbound network traffic from your OpenShift Container Platform cluster.
+​
+Palantir will add these IP addresses to a security group so that your cluster can connect to the Palantir delivery environment and container registry.
+
+After this task is complete, Palantir will send you:
+
+- Your Palantir registration key, which gives you access to the delivery environment
+- Your username and password, which you use to authenticate to the Palantir container registry.
+
+## Installing Palantir for IBM Cloud Pak for Data
+
+Installing Palantir for IBM Cloud Pak for Data uses the IBM Cloud Pak for Data installer (`cpd-cli`) to install a Cloud Pak for Data Assembly, which can be found at https://github.com/palantir/palantir-cloudpak. The cpd-cli and Palantir assembly are responsible for preparing the OCP cluster resources and deploying the Palantir operator. The Palantir operator is then responsible for installing the P4CP4D platform. The Palantir Operator and P4CP4D container images are provided by the Palantir container registry. Instructions below are provided for information necessary to authenticate with the Palantir container registry and how to configure the installer to communicate with it.
 
 ### Pre-requisites
 
-Before installation can happen, the IP addresses that network traffic will egress the OSCP cluster from must be added to a security group for communicating with Palantir's delivery environment and container registry. This must be done by Palantir support prior to installation via the Palantir operator.
+The installation instructions below assume the following:
 
-Palantir will then provide the following:
+- IBM Cloud Pak for Data Installer v3.5.x has already been downloaded and is available. Details can be found at https://github.com/IBM/cpd-cli.
+- The Palantir for IBM Cloud Pak for Data Assembly has been downloaded. Details can be found at https://github.com/palantir/palantir-cloudpak.
+- All pre-requisite software outlined in [Supported Platforms, Architectures and Cloud Providers](#supported-platforms,-architectures-and-cloud-providers) must already be installed.
 
-- A Palantir registration key that is used to authenticate and authorize your Palantir for Cloudpak for Data installation against Palantir's delivery environment.
-- A username and password to authenticate with the Palantir container registry.
+### How to install Palantir for IBM Cloud Pak for Data
 
-Finally, in addition to the Palantir provided information, you must have the following information prior to installing Palantir for Cloudpak for Data:
+#### Define installation settings
 
-- An IBM entitlement key that is entitled to Palantir for IBM Cloudpak for Data.
+You will need the following pieces of information for the installation process:
 
-### How to install Palantir for IBM Cloudpak for Data
+- `$NAMESPACE` - Pick the namespace that you want to install the palantir-operator in. Note that this should be different than the namespace in which Cloud Pak for Data has been installed.
+- `$CPD_NAMESPACE` - the existing OpenShift namespace that the IBM Cloud Pak for Data installation exists within.
+- `$STORAGE_CLASS` - the Kubernetes storage class to use for storing data in P4CP4D.
+- `$PALANTIR_DOCKER_USER` - the username to authenticate to Palantir's container registry
+- `$PALANTIR_DOCKER_PASSWORD` - the password to authenticate to Palantir's container registry
 
-The following instructions assume you have either checked out this git repository or have downloaded a release TGZ of the CPD Assembly module. Follow these steps to install Palantir for Cloud Pak for Data against an OpenShift Compute Platform that already has CP4D installed.
+These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
 
-1. Switch to the `cpd` folder from either the git repository or the decompressed CPD Assembly module TGZ.
-2. Run `install-prereq.sh` to download the necessary CLI that knows how to manage the Assembly.
-3. Copy `cpd/modules/palantir-operator/x86_64/1.0.0/install-overrides.yaml` to `cpd/override.yaml`. The Assembly module will use the `cpd/override.yaml` file. Fill in the override values based on the OSCP and Cloudpak instance you want to install Palantir in.
-4. Pick the namespace that you want to install the palantir-operator in. Note that this should be different than the namespace in which CP4D has been installed. Set an environment variable `NAMESPACE` with the namespace you picked. Example: `export NAMESPACE=palantir`
-5. Set an environment variable `CPD_NAMESPACE` for the namespace where CP4D is installed. Example: `export CPD_NAMESPACE=cp4d`
-6. Set an environment variable `STORAGE_CLASS` for the Kubernetes storage class you specified in the `override.yaml` from Step 3. Example: `export STORAGE_CLASS=ibmc-file-gold-gid`
-7. Set environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD` for your login to Palantir's container registry. These environment variables will get used by the script in the next step.
-8. Run `run.sh install` to install the palantir-operator into this namespace.
-9. If the installation fails and you want to retry it again, you will need to run `run.sh uninstall` first before trying again.
+Take the following steps to configure the installation:
+
+1. Starting in the directory which you extract the Palantir for IBM Cloud Pak for Data Assembly module, switch to the `cpd` folder.
+2. Copy `./modules/palantir-operator/x86_64/1.0.0/install-overrides.yaml` to `./override.yaml`. The Assembly module will use the `cpd/override.yaml` file. Fill in the override values based on the OCP and Cloud Pak for Data instance you want to install Palantir in.
+3. Copy `./cpd-cli/repo.yaml` to `./repo.yaml`. The `cpd-cli` will reference this file for gaining acess to the necessary Palantir operator images. Fill in the `TODO:` values with the referenced variables above.
+
+#### Installation Steps
+
+There are two steps to installing Palantir for IBM Cloud Pak for Data.
+
+```bash
+./cpd-cli/cpd-cli adm \
+        --repo ./repo.yaml \
+        --assembly palantir-cloudpak \
+        --download-path ./cpd-cli-workspace \
+        --namespace $CPD_NAMESPACE \
+        --tether-to $NAMESPACE \
+        --apply \
+        --verbose
+
+  ./cpd-cli/cpd-cli install \
+        --repo ./repo.yaml \
+        --assembly palantir-cloudpak \
+        --download-path ./cpd-cli-workspace \
+        --override ./override.yaml \
+        --namespace $CPD_NAMESPACE \
+        --tether-to $NAMESPACE \
+        --instance $NAMESPACE \
+        --storageclass $STORAGE_CLASS \
+        --verbose
+
+```
+
+#### Uninstalling
+
+If the installation fails and you want to retry it again, run the following commands before trying again:
+
+```bash
+./cpd-cli/cpd-cli uninstall \
+        --assembly palantir-cloudpak \
+        --namespace $CPD_NAMESPACE \
+        --instance $NAMESPACE \
+        --verbose
+
+oc delete namespace $NAMESPACE
+```
 
 ### Operator scoping and use of namespaces
 

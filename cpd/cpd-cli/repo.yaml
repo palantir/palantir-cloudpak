@@ -1,17 +1,19 @@
 --- 
 fileservers: 
   -
-    url: "http://localhost:8000/"
+    url: "http://raw.github.com/palantir/palantir-cloudpak/develop/cpd"
   - 
     url: "https://raw.github.com/IBM/cloud-pak/master/repo/cpd/3.5"
 registry: 
   - 
     name: prod-entitled-registry
-    namespace: ""
-    url: docker.io
-  -
-    apikey: <enter_api_key>
-    name: base-registry
-    namespace: ""
+    namespace: <TODO: Replace with $NAMESPACE>
     url: cp.icr.io/cp/cpd
     username: cp
+    apikey: <TODO: Replace with $IBM_ICR_API_KEY>
+  -
+    name: base-registry
+    namespace: <TODO: Replace with $NAMESPACE>
+    url: docker.external.palantir.build
+    apikey: <TODO: Replace with $PALANTIR_DOCKER_PASSWORD>
+    username: <TODO: Replace with $PALANTIR_DOCKER_USERNAME>

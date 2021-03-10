@@ -26,7 +26,7 @@ trap cleanup SIGHUP SIGINT SIGTERM EXIT
 install() {
   echo "Running adm install for $NAMESPACE"
   ./cpd-cli/cpd-cli adm \
-        --repo ./cpd-cli/repo.yaml \
+        --repo ./repo.yaml \
         --assembly palantir-cloudpak \
         --download-path ./cpd-cli-workspace \
         --namespace $CPD_NAMESPACE \
@@ -36,7 +36,7 @@ install() {
 
   echo "Running install for $NAMESPACE"
   ./cpd-cli/cpd-cli install \
-        --repo ./cpd-cli/repo.yaml \
+        --repo ./repo.yaml \
         --assembly palantir-cloudpak \
         --download-path ./cpd-cli-workspace \
         --override ./override.yaml \
@@ -46,10 +46,10 @@ install() {
         --storageclass $STORAGE_CLASS \
         --verbose
 
-  echo "Completed install for $NAMESPACE"
-  oc create secret -n $NAMESPACE docker-registry palantir-ext-creds --docker-server docker.external.palantir.build --docker-username "$DOCKER_USERNAME" --docker-password "$DOCKER_PASSWORD"
-  oc patch serviceaccount palantir-operator -n $NAMESPACE -p '{"imagePullSecrets": [{"name": "palantir-ext-creds"}]}'
-  oc delete po -n $NAMESPACE -l app.kubernetes.io/instance=palantir-operator
+#   echo "Completed install for $NAMESPACE"
+#    oc create secret -n $NAMESPACE docker-registry palantir-ext-creds --docker-server docker.external.palantir.build --docker-username "$DOCKER_USERNAME" --docker-password "$DOCKER_PASSWORD"
+#    oc patch serviceaccount palantir-operator -n $NAMESPACE -p '{"imagePullSecrets": [{"name": "palantir-ext-creds"}]}'
+#   oc delete po -n $NAMESPACE -l app.kubernetes.io/instance=palantir-operator
 }
 
 uninstall() {
