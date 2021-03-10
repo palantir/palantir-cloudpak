@@ -2,8 +2,8 @@ type: module
 category: template-yamls
 registry-reference: prod-entitled-registry
 images:
-  - name: palantir-operator
-    tag: 1.0.0
+  - name: palantir-cloudpak
+    tag: 0.4.0
 
 templateModuleFiles:
   - name: palantir-operator.yaml

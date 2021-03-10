@@ -8,10 +8,12 @@ registry:
   - 
     name: prod-entitled-registry
     namespace: ""
-    url: docker.io
-  -
-    apikey: <enter_api_key>
-    name: base-registry
-    namespace: ""
     url: cp.icr.io/cp/cpd
     username: cp
+    apikey: <enter_api_key>
+  -
+    name: palantir-registry
+    namespace: ""
+    url: docker.external.palantir.build
+    apikey: <enter_api_key>
+    username: <enter_username>
