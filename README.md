@@ -84,7 +84,7 @@ The installation instructions below assume the following:
 
 - IBM Cloud Pak for Data Installer v3.5.x has already been downloaded and is available. Details can be found at https://github.com/IBM/cpd-cli.
 - The Palantir for IBM Cloud Pak for Data Assembly has been downloaded. Details can be found at https://github.com/palantir/palantir-cloudpak.
-- All pre-requisite software outlined in [Supported Platforms, Architectures and Cloud Providers](#supported-platforms,-architectures-and-cloud-providers) must already be installed.
+- All pre-requisite software outlined in [Supported Platforms, Architectures and Cloud Providers](#supported-platforms-architectures-and-cloud-providers) must already be installed.
 
 ### How to install Palantir for IBM Cloud Pak for Data
 
