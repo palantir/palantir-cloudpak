@@ -7,13 +7,13 @@ fileservers:
 registry: 
   - 
     name: prod-entitled-registry
-    namespace: ""
+    namespace: <TODO: Replace with $NAMESPACe>
     url: cp.icr.io/cp/cpd
     username: cp
-    apikey: <enter_api_key>
+    apikey: <TODO: Replace with $IBM_ICR_API_KEY>
   -
-    name: palantir-registry
-    namespace: ""
+    name: base-registry
+    namespace: <TODO: Replace with $NAMESPACE>
     url: docker.external.palantir.build
-    apikey: <enter_api_key>
-    username: <enter_username>
+    apikey: <TODO: Replace with $PALANTIR_DOCKER_PASSWORD>
+    username: <TODO: Replace with $PALANTIR_DOCKER_USERNAME>

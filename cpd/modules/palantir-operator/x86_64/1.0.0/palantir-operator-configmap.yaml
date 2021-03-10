@@ -16,7 +16,7 @@ data:
     cluster-config:
       entitlement-key: {{ .ibmEntitlementKey }}
       registration-key: {{ .palantirRegistrationKey }}
-      artifactory-creds-secret: palantir-ext-creds
+      artifactory-creds-secret: docker-pull-{{ .palantirOperatorNamespace }}-docker-external-palantir-build-base-registry-registry
       own-namespace-env-var: OPERATOR_NAMESPACE
       instance-name: {{ .instanceName }}
       frontdoor-config:

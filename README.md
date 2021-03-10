@@ -31,7 +31,7 @@ P4CP4D can be run on any cloud provider so long as the following are true:
 
 ### Security Considerations
 
-Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit. 
+Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 *Encryption in transit*:
 
@@ -47,7 +47,7 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 - Each file encrypted with distinct symmetric key (AES-256)
 - AES keys are envelope encrypted with an asymmetric keypair (RSA-2048) known only to the Palantir Foundry Catalog
 
-## Installation
+## Installing Palantir for IBM Cloud Pak for Data
 
 ### Pre-requisites
 
@@ -68,13 +68,64 @@ The following instructions assume you have either checked out this git repositor
 
 1. Switch to the `cpd` folder from either the git repository or the decompressed CPD Assembly module TGZ.
 2. Run `install-prereq.sh` to download the necessary CLI that knows how to manage the Assembly.
-3. Copy `cpd/modules/palantir-operator/x86_64/1.0.0/install-overrides.yaml` to `cpd/override.yaml`. The Assembly module will use the `cpd/override.yaml` file. Fill in the override values based on the OSCP and Cloudpak instance you want to install Palantir in.
-4. Pick the namespace that you want to install the palantir-operator in. Note that this should be different than the namespace in which CP4D has been installed. Set an environment variable `NAMESPACE` with the namespace you picked. Example: `export NAMESPACE=palantir`
-5. Set an environment variable `CPD_NAMESPACE` for the namespace where CP4D is installed. Example: `export CPD_NAMESPACE=cp4d`
-6. Set an environment variable `STORAGE_CLASS` for the Kubernetes storage class you specified in the `override.yaml` from Step 3. Example: `export STORAGE_CLASS=ibmc-file-gold-gid`
-7. Set environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD` for your login to Palantir's container registry. These environment variables will get used by the script in the next step.
-8. Run `run.sh install` to install the palantir-operator into this namespace.
-9. If the installation fails and you want to retry it again, you will need to run `run.sh uninstall` first before trying again.
+
+#### Define installation settings
+
+You will need the following pieces of information for the installation process:
+
+- `$NAMESPACE` - Pick the namespace that you want to install the palantir-operator in. Note that this should be different than the namespace in which CP4D has been installed.
+- `$CPD_NAMESPACE` - the existing OpenShift namespace that the IBM Cloud Pak for Data installation exists within.
+- `$STORAGE_CLASS` - the Kubernetes storage class to use for storing data in P4CP4D.
+- `$PALANTIR_DOCKER_USER` - the username to authenticate to Palantir's container registry
+- `$PALANTIR_DOCKER_PASSWORD` - the password to authenticate to Palantir's container registry
+
+These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
+
+Take the following steps to configure the installation:
+
+1. Copy `./modules/palantir-operator/x86_64/1.0.0/install-overrides.yaml` to `./override.yaml`. The Assembly module will use the `cpd/override.yaml` file. Fill in the override values based on the OSCP and Cloudpak instance you want to install Palantir in.
+2. Copy `./cpd-cli/repo.yaml` to `./repo.yaml`. The `cpd-cli` will reference this file for gaining acess to the necessary Palantir operator images. Fill in the `TODO:` values with the referenced variables above.
+
+#### Installation Steps
+
+There are two steps to installing Palantir for IBM Cloud Pak for Data.
+
+```bash
+./cpd-cli/cpd-cli adm \
+        --repo ./repo.yaml \
+        --assembly palantir-cloudpak \
+        --download-path ./cpd-cli-workspace \
+        --namespace $CPD_NAMESPACE \
+        --tether-to $NAMESPACE \
+        --apply \
+        --verbose
+
+  ./cpd-cli/cpd-cli install \
+        --repo ./repo.yaml \
+        --assembly palantir-cloudpak \
+        --download-path ./cpd-cli-workspace \
+        --override ./override.yaml \
+        --namespace $CPD_NAMESPACE \
+        --tether-to $NAMESPACE \
+        --instance $NAMESPACE \
+        --storageclass $STORAGE_CLASS \
+        --verbose
+
+```
+
+#### Uninstalling
+
+If the installation fails and you want to retry it again, run the following commands before trying again:
+
+```bash
+./cpd-cli/cpd-cli uninstall \
+        --assembly palantir-cloudpak \
+        --namespace $CPD_NAMESPACE \
+        --instance $NAMESPACE \
+        --verbose
+
+oc delete namespace $NAMESPACE
+```
 
 ### Operator scoping and use of namespaces
 

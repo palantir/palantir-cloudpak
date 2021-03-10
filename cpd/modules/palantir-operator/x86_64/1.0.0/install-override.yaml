@@ -1,4 +1,10 @@
 ####
+# `palantirOperatorNamespace` is the OpenShift namespace to install the operator into.
+# This should be the same $NAMESPACE value that is provided to the `cpd-cli` commands during the
+# installation process.
+####
+palantirOperatorNamespace: "palantir"
+####
 # `cp4dFQDN` is the fully qualified domain name of the Cloud Pak for Data instance for which 
 # P4CP4D should integrate with
 ####

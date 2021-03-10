@@ -1,6 +1,6 @@
 type: module
 category: template-yamls
-registry-reference: prod-entitled-registry
+registry-reference: ibm-entitled-registry
 images:
   - name: palantir-cloudpak
     tag: 0.4.0
