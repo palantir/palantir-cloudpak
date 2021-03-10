@@ -25,7 +25,7 @@ _Cloud Providers_
 P4CP4D can be run on any cloud provider so long as the following are true:
 
 - An OpenShift storage class is available that supports:
-  - 3,000 IPS with a sustained throughput of 256MiB/s
+  - 3,000 IOPS with a sustained throughput of 256MiB/s
   - READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
 - A blob storage service that offers an AWS S3 compatible API.
 
@@ -39,7 +39,7 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 *Encryption at rest*:
 
-- All Foundry Filesystem (blob storage) is secured with application level encryption. See below for details.
+- All Foundry Filesystems (blob storage) are secured with application level encryption. See below for details.
 - Encryption of metadata and other local storage should be provided passively via encrypted storage partitions exposed via configured storage classes in OpenShift.
 
 *Palantir Foundry Filesystem Encryption*:
