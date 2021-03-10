@@ -40,3 +40,6 @@ rules:
 - apiGroups: ["policy"]
   resources: ["poddisruptionbudgets"]
   verbs: ['*']
+- apiGroups: ["deploy.palantir.com"]
+  resources: ["crossnamespacediscoverytargets"]
+  verbs: ["get", "create", "update"]  
