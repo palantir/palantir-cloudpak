@@ -46,7 +46,6 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 - Each file encrypted with distinct symmetric key (AES-256)
 - AES keys are envelope encrypted with an asymmetric keypair (RSA-2048) known only to the Palantir Foundry Catalog
-- Access to Palantir Foundry Filesystem granted with narrowly-scoped temporary security credentials.  
 
 ## Installation
 
