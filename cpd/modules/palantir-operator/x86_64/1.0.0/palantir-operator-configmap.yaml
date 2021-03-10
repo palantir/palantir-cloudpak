@@ -65,7 +65,7 @@ data:
     - name: k8s-service-manager
       version: 1.19.0
     - name: status-sidecar-mutator
-      version: 1.39.0
+      version: 1.41.0
     - name: expected-state
       version: 1.68.0
     - name: injected-mesh-sidecar
