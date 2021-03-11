@@ -3,7 +3,7 @@ category: template-yamls
 registry-reference: ibm-entitled-registry
 images:
   - name: palantir-cloudpak
-    tag: 0.4.0
+    tag: latest
 
 templateModuleFiles:
   - name: palantir-operator.yaml
