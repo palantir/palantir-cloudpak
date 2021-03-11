@@ -62,7 +62,7 @@ Additionally, to install the software, you must have the following entitlement k
 ### Obtaining your registration key
 
 Before you can install Palantir, you must provide information about your cluster to Palantir.
-​
+
 Send the following information to Palantir:
 
 - The IP addresses that are used for outbound network traffic from your OpenShift Container Platform cluster.
