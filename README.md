@@ -108,28 +108,28 @@ Take the following steps to configure the installation:
 
 #### Installation Steps
 
-There are two steps to installing Palantir for IBM Cloud Pak for Data.
+There are two steps to installing Palantir for IBM Cloud Pak for Data. These instructions assume that `cpd-cli` is on your executable path. If it is not, you should use the absolute filepath of the `cpd-cli` based on where it is installed in your environment.
 
 ```bash
-./cpd-cli/cpd-cli adm \
-        --repo ./repo.yaml \
-        --assembly palantir-cloudpak \
-        --download-path ./cpd-cli-workspace \
-        --namespace $CPD_NAMESPACE \
-        --tether-to $NAMESPACE \
-        --apply \
-        --verbose
+cpd-cli adm \
+    --repo ./repo.yaml \
+    --assembly palantir-cloudpak \
+    --download-path ./cpd-cli-workspace \
+    --namespace $CPD_NAMESPACE \
+    --tether-to $NAMESPACE \
+    --apply \
+    --verbose
 
-  ./cpd-cli/cpd-cli install \
-        --repo ./repo.yaml \
-        --assembly palantir-cloudpak \
-        --download-path ./cpd-cli-workspace \
-        --override ./override.yaml \
-        --namespace $CPD_NAMESPACE \
-        --tether-to $NAMESPACE \
-        --instance $NAMESPACE \
-        --storageclass $STORAGE_CLASS \
-        --verbose
+cpd-cli install \
+    --repo ./repo.yaml \
+    --assembly palantir-cloudpak \
+    --download-path ./cpd-cli-workspace \
+    --override ./override.yaml \
+    --namespace $CPD_NAMESPACE \
+    --tether-to $NAMESPACE \
+    --instance $NAMESPACE \
+    --storageclass $STORAGE_CLASS \
+    --verbose
 
 ```
 
@@ -138,11 +138,11 @@ There are two steps to installing Palantir for IBM Cloud Pak for Data.
 If the installation fails and you want to retry it again, run the following commands before trying again:
 
 ```bash
-./cpd-cli/cpd-cli uninstall \
-        --assembly palantir-cloudpak \
-        --namespace $CPD_NAMESPACE \
-        --instance $NAMESPACE \
-        --verbose
+cpd-cli uninstall \
+    --assembly palantir-cloudpak \
+    --namespace $CPD_NAMESPACE \
+    --instance $NAMESPACE \
+    --verbose
 
 oc delete namespace $NAMESPACE
 ```
