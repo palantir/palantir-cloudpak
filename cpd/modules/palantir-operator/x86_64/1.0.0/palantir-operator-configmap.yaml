@@ -71,7 +71,7 @@ data:
     - name: expected-state
       version: 1.68.0
     - name: injected-mesh-sidecar
-      version: 1.16.2
+      version: 1.16.3
   runtime.yml: |
     logging:
       level: debug
