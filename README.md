@@ -112,24 +112,24 @@ There are two steps to installing Palantir for IBM Cloud Pak for Data. These ins
 
 ```bash
 cpd-cli adm \
-        --repo ./repo.yaml \
-        --assembly palantir-cloudpak \
-        --download-path ./cpd-cli-workspace \
-        --namespace $CPD_NAMESPACE \
-        --tether-to $NAMESPACE \
-        --apply \
-        --verbose
+    --repo ./repo.yaml \
+    --assembly palantir-cloudpak \
+    --download-path ./cpd-cli-workspace \
+    --namespace $CPD_NAMESPACE \
+    --tether-to $NAMESPACE \
+    --apply \
+    --verbose
 
-  cpd-cli install \
-        --repo ./repo.yaml \
-        --assembly palantir-cloudpak \
-        --download-path ./cpd-cli-workspace \
-        --override ./override.yaml \
-        --namespace $CPD_NAMESPACE \
-        --tether-to $NAMESPACE \
-        --instance $NAMESPACE \
-        --storageclass $STORAGE_CLASS \
-        --verbose
+cpd-cli install \
+    --repo ./repo.yaml \
+    --assembly palantir-cloudpak \
+    --download-path ./cpd-cli-workspace \
+    --override ./override.yaml \
+    --namespace $CPD_NAMESPACE \
+    --tether-to $NAMESPACE \
+    --instance $NAMESPACE \
+    --storageclass $STORAGE_CLASS \
+    --verbose
 
 ```
 
@@ -139,10 +139,10 @@ If the installation fails and you want to retry it again, run the following comm
 
 ```bash
 cpd-cli uninstall \
-        --assembly palantir-cloudpak \
-        --namespace $CPD_NAMESPACE \
-        --instance $NAMESPACE \
-        --verbose
+    --assembly palantir-cloudpak \
+    --namespace $CPD_NAMESPACE \
+    --instance $NAMESPACE \
+    --verbose
 
 oc delete namespace $NAMESPACE
 ```
