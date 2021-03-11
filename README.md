@@ -108,10 +108,10 @@ Take the following steps to configure the installation:
 
 #### Installation Steps
 
-There are two steps to installing Palantir for IBM Cloud Pak for Data.
+There are two steps to installing Palantir for IBM Cloud Pak for Data. These instructions assume that `cpd-cli` is on your executable path. If it is not, you should use the absolute filepath of the `cpd-cli` based on where it is installed in your environment.
 
 ```bash
-./cpd-cli/cpd-cli adm \
+cpd-cli adm \
         --repo ./repo.yaml \
         --assembly palantir-cloudpak \
         --download-path ./cpd-cli-workspace \
@@ -120,7 +120,7 @@ There are two steps to installing Palantir for IBM Cloud Pak for Data.
         --apply \
         --verbose
 
-  ./cpd-cli/cpd-cli install \
+  cpd-cli install \
         --repo ./repo.yaml \
         --assembly palantir-cloudpak \
         --download-path ./cpd-cli-workspace \
@@ -138,7 +138,7 @@ There are two steps to installing Palantir for IBM Cloud Pak for Data.
 If the installation fails and you want to retry it again, run the following commands before trying again:
 
 ```bash
-./cpd-cli/cpd-cli uninstall \
+cpd-cli uninstall \
         --assembly palantir-cloudpak \
         --namespace $CPD_NAMESPACE \
         --instance $NAMESPACE \
