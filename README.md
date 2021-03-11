@@ -147,6 +147,65 @@ If the installation fails and you want to retry it again, run the following comm
 oc delete namespace $NAMESPACE
 ```
 
+### Validating a Palantir for IBM Cloud Pak for Data Installation
+
+Once you have finished following the [installation steps](#installation-steps) for Palantir for IBM Cloud Pak for Data, you can validate that your installation was successful using the following steps:
+
+1. Make sure that the Palantir for IBM Cloud Pak for Data operator is has a "Running" status in the namespace you chose for installation. Note down the value for IP column as it will be useful for later steps.
+
+> $ oc get pods -n $NAMESPACE -lname=palantir-operator -o wide<br>
+> NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;READY&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;RESTARTS&nbsp;&nbsp;&nbsp;AGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NODE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOMINATED NODE&nbsp;&nbsp;&nbsp;READINESS GATES<br>
+> palantir-operator-df4c67ffc-zbmth &nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2m55s&nbsp;&nbsp;172.30.178.152&nbsp;&nbsp;10.188.99.6&nbsp;&nbsp;
+
+2. Create a “bastion“ container using the following command. This command will open a shell for you inside the ”bastion“ container.
+
+```bash
+oc run -n $NAMESPACE bastion -it --image=registry.access.redhat.com/ubi8/ubi-minimal:latest -- bash
+```
+
+3. Install jq using the following command inside the container created in Step 2
+
+```bash
+curl -L -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x /usr/local/bin/jq
+```
+
+4. Make the following HTTP request from inside the container created in Step 2 using the IP from Step 1.
+
+```bash
+curl https://<IP FROM STEP 1>:3756/palantir-operator/status/health -k | jq .checks.INSTALL_PROGRESS
+```
+
+You should see an output that looks like the following:
+
+```json
+{
+  "type": "INSTALL_PROGRESS",
+  "state": "REPAIRING",
+  "message": "Installation is in progress",
+  "params": {
+    "details": {
+      "APOLLO_SETUP": "in-progress",
+      "APPLICATIONS_SETUP": "in-progress",
+      "INFRASTRUCTURE_SETUP": "complete",
+      "NAMESPACES_SETUP": "complete"
+    }
+  }
+}
+```
+
+The installation will have completed once all of the “in-progress” items have moved to the “complete” state. The expected completion order of these is the following
+
+- NAMESPACES_SETUP
+- INFRASTRUCTURE_SETUP
+- APOLLO_SETUP
+- APPLICATIONS_SETUP
+
+Once the installation is complete per Step (4), you should be able to access Palantir for IBM Cloud Pak by visiting the URL for the frontend. This url will depend on the domain that is being used for your Cloud Pak for Data installation. Check with your cluster administrator for this info if you don’t already have it.
+
+```
+https://palantir-cloudpak.<cloudpak-for-data-hostname>/multipass/login/all
+```
+
 ### Operator scoping and use of namespaces
 
 The Palantir operator to install P4CP4D results in the following OpenShift namespaces being created:
