@@ -8,20 +8,14 @@ echo "Cleaning stale workspace if it exists..."
 rm -rf ./cpd-cli-workspace
 
 if [[ ! -f "./override.yaml" ]]; then
-    echo "Please define overrides in a file called override.yaml in the 'case' directory. You can use modules/palantir-operator/x86_64/1.0.0/install-override.yaml as an example."
+    echo "Please define overrides in a file called override.yaml in the 'cpd' directory. You can use modules/palantir-operator/x86_64/1.0.0/install-override.yaml as an example."
     exit
 fi
 
-echo "Serving up our CASE assembly..."
-python3 -m http.server 8000 &> /dev/null &
-server_pid=$!
-
-cleanup() {
-  kill $server_pid
-  exit
-}
-
-trap cleanup SIGHUP SIGINT SIGTERM EXIT
+if [[ ! -f "./repo.yaml" ]]; then
+    echo "./repo.yaml does not exist. Please copy cpd-cli/repo.yaml and fill in fields marked as 'TODO:'"
+    exit
+fi
 
 install() {
   echo "Running adm install for $NAMESPACE"
@@ -45,11 +39,6 @@ install() {
         --instance $NAMESPACE \
         --storageclass $STORAGE_CLASS \
         --verbose
-
-#   echo "Completed install for $NAMESPACE"
-#    oc create secret -n $NAMESPACE docker-registry palantir-ext-creds --docker-server docker.external.palantir.build --docker-username "$DOCKER_USERNAME" --docker-password "$DOCKER_PASSWORD"
-#    oc patch serviceaccount palantir-operator -n $NAMESPACE -p '{"imagePullSecrets": [{"name": "palantir-ext-creds"}]}'
-#   oc delete po -n $NAMESPACE -l app.kubernetes.io/instance=palantir-operator
 }
 
 uninstall() {
