@@ -41,7 +41,7 @@ data:
     - name: vault-etcd
       version: 3.4.517
     - name: launchcontrol-deployment
-      version: 1.84.0
+      version: 1.85.1
     - name: launchpod
       version: 1.17.0
     - name: rubix-auth-deployment
