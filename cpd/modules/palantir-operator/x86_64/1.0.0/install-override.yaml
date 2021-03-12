@@ -28,7 +28,7 @@ proxyPrivateKeyBase64: ""
 ####
 instanceName: ""
 ####
-# `cpdNamespace` is the name of in which Cloud Pak for Data is installed.
+# `cpdNamespace` is the name of the namespace in which Cloud Pak for Data is installed.
 ####
 cpdNamespace: ""
 ####
