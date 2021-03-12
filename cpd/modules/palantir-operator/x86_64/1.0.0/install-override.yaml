@@ -5,6 +5,10 @@
 ####
 palantirOperatorNamespace: "palantir"
 ####
+# `cpdNamespace` is the name of the namespace in which Cloud Pak for Data is installed.
+####
+cpdNamespace: ""
+####
 # `cp4dFQDN` is the fully qualified domain name of the Cloud Pak for Data instance for which 
 # P4CP4D should integrate with
 ####
@@ -27,10 +31,6 @@ proxyPrivateKeyBase64: ""
 # this value as an empty string, however the field must still exist
 ####
 instanceName: ""
-####
-# `cpdNamespace` is the name of the namespace in which Cloud Pak for Data is installed.
-####
-cpdNamespace: ""
 ####
 # `imageRegistryPrefix` is the container registry FQDN the palantir-operator will use when 
 # installing P4CP4D. 
