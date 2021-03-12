@@ -5,6 +5,12 @@
 ####
 palantirOperatorNamespace: "palantir"
 ####
+# `cpdNamespace` is the OpenShift namespace in which Cloud Pak for Data is installed.
+# This should be the same $CPD_NAMESPACE value that is provided to the `cpd-cli` commands during the
+# installation process.
+####
+cpdNamespace: ""
+####
 # `cp4dFQDN` is the fully qualified domain name of the Cloud Pak for Data instance for which 
 # P4CP4D should integrate with
 ####
