@@ -28,6 +28,10 @@ proxyPrivateKeyBase64: ""
 ####
 instanceName: ""
 ####
+# `cpdNamespace` is the name of in which Cloud Pak for Data is installed.
+####
+cpdNamespace: ""
+####
 # `imageRegistryPrefix` is the container registry FQDN the palantir-operator will use when 
 # installing P4CP4D. 
 ####
