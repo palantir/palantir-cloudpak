@@ -33,6 +33,7 @@ data:
         selector:
           rubix-app: envoy
       image-registry-prefix: {{ .imageRegistryPrefix }}
+      cpd-namespace: {{ .cpdNmespace }}
       storage-class: {{ .storageClass }}
       application-class: small
     applications:
