@@ -231,7 +231,9 @@ The installation will have completed once all of the “in-progress” items hav
 - APOLLO_SETUP
 - APPLICATIONS_SETUP
 
-Once the installation is complete per Step (4) above, you can open Palantir for IBM Cloud Pak for Data by clicking _Get Started_ or another link in the Palantir card on the Cloud Pak for Data home page. Alternatively, you can visit the URL for the frontend directly. This URL will depend on the domain that is being used for your Cloud Pak for Data installation. Check with your cluster administrator for this information if you don't already have it.
+#### Accessing the installation
+
+Once the installation is complete, you can open Palantir for IBM Cloud Pak for Data by clicking _Get Started_ or another link in the Palantir card on the Cloud Pak for Data home page. Alternatively, you can visit the URL for the frontend directly. This URL will depend on the domain that is being used for your Cloud Pak for Data installation. Check with your cluster administrator for this information if you don't already have it.
 
 ```
 https://palantir-cloudpak.<cloudpak-for-data-hostname>/multipass/login/all
