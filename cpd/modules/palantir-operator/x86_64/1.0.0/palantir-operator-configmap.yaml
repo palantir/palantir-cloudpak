@@ -14,8 +14,12 @@ data:
       port: 3756
       context-path: /palantir-operator
     cluster-config:
-      entitlement-key: {{ .ibmEntitlementKey }}
-      registration-key: {{ .palantirRegistrationKey }}
+      registration-config-secret: registration-info
+      data-storage:
+        path: {{ .dataStoragePath }}
+        endpoint: {{ .dataStorageEndpoint }}
+        creds-secret: data-storage-creds
+        encryption-secret: data-storage-encryption
       artifactory-creds:
         src-secret: docker-pull-{{ .palantirOperatorNamespace }}-docker-external-palantir-build-base-registry-registry
         dst-secret: palantir-ext-creds
