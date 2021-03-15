@@ -11,10 +11,10 @@ palantirOperatorNamespace: "palantir"
 ####
 cpdNamespace: ""
 ####
-# `cp4dFQDN` is the fully qualified domain name of the Cloud Pak for Data instance for which 
-# P4CP4D should integrate with
+# `cp4dFQDN` is the fully qualified domain name of the Cloud Pak for Data instance with which 
+# P4CP4D should integrate
 ####
-cp4dFQDN: "palantir-cp4d-cpd-palantir-cp4d.cp4d-35-demo-cluster-7cd688c1432d802c3209443a608e5e71-0000.us-east.containers.appdomain.cloud"
+cp4dFQDN: "foo.bar.baz.containers.appdomain.cloud"
 ####
 # `proxyCertificateBase64` is the base64 encoded <TODO: what format of certificate? x509?>
 # certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed
