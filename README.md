@@ -74,6 +74,15 @@ After this task is complete, Palantir will send you:
 - Your Palantir registration key, which gives you access to the delivery environment
 - Your username and password, which you use to authenticate to the Palantir container registry.
 
+### Generating an RSA key pair for data encryption
+
+Palantir for IBM Cloud Pak for Data requires an RSA key pair that it will use for encrypting all data it stores in the AWS S3 compatible blob storage. This can be generated using the following steps:
+```bash
+openssl genrsa -out private-key.pem 2048
+openssl rsa -in private-key.pem -pubout -out public-key.pem
+```
+**This key pair is the master encryption key for all data P4CP4D stores and should be backed up in a safe and secure location** 
+
 ## Installing Palantir for IBM Cloud Pak for Data
 
 Installing Palantir for IBM Cloud Pak for Data uses the IBM Cloud Pak for Data installer (`cpd-cli`) to install a Cloud Pak for Data Assembly, which can be found at https://github.com/palantir/palantir-cloudpak. The cpd-cli and Palantir assembly are responsible for preparing the OCP cluster resources and deploying the Palantir operator. The Palantir operator is then responsible for installing the P4CP4D platform. The Palantir Operator and P4CP4D container images are provided by the Palantir container registry. Instructions below are provided for information necessary to authenticate with the Palantir container registry and how to configure the installer to communicate with it.
@@ -97,6 +106,12 @@ You will need the following pieces of information for the installation process:
 - `$STORAGE_CLASS` - the Kubernetes storage class to use for storing data in P4CP4D.
 - `$PALANTIR_DOCKER_USER` - the username to authenticate to Palantir's container registry
 - `$PALANTIR_DOCKER_PASSWORD` - the password to authenticate to Palantir's container registry
+- `$DATA_STORAGE_ACCESS_KEY` - the access key for the AWS S3 compatible blob storage that you want P4CP4D to use.
+- `$DATA_STORAGE_ACCESS_KEY_SECRET` - the access key secret for the AWS S3 compatible blob storage that you want P4CP4D to use.
+- `$DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE` - the file containing the PEM encoded RSA public key that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
+- `$DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE` - the file containing the PEM encoded RSA private key that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
+- `$IBM_ENTITLEMENT_KEY` - the IBM Entitlement key that includes entitlements for CP4D and P4CP4D that you obtained as part of [Licenses](#licenses).
+- `$PALANTIR_REGISTRATION_KEY` - the Palantir registration key that you obtained as part of [Licenses](#licenses).
 
 These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
 
@@ -111,6 +126,20 @@ Take the following steps to configure the installation:
 There are two steps to installing Palantir for IBM Cloud Pak for Data. These instructions assume that `cpd-cli` is on your executable path. If it is not, you should use the absolute filepath of the `cpd-cli` based on where it is installed in your environment.
 
 ```bash
+oc create namespace $NAMESPACE
+
+oc create secret generic -n $NAMESPACE data-storage-encryption \
+    --from-file=public-key=$DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE \
+    --from-file=private-key=$DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE
+
+oc create secret generic -n $NAMESPACE data-storage-creds \
+    --from-literal=access-key=$DATA_STORAGE_ACCESS_KEY \
+    --from-literal=access-key-secret=$DATA_STORAGE_ACCESS_KEY_SECRET
+
+oc create secret generic -n $NAMESPACE registration \
+    --from-literal=entitlement-key=$IBM_ENTITLEMENT_KEY \
+    --from-literal=registration-key=$PALANTIR_REGISTRATION_KEY
+
 cpd-cli adm \
     --repo ./repo.yaml \
     --assembly palantir-cloudpak \
