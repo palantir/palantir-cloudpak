@@ -78,8 +78,10 @@ After this task is complete, Palantir will send you:
 
 Palantir for IBM Cloud Pak for Data requires an RSA key pair that it will use for encrypting all data it stores in the AWS S3 compatible blob storage that is provided as part of installation. This can be generated using the following steps:
 ```bash
-openssl genrsa -out private-key.pem 2048
-openssl rsa -in private-key.pem -pubout -out public-key.pem
+openssl genrsa -out private-pkcs1.pem 2048
+openssl rsa -in private-pkcs1.pem -out public-key.pem -outform pem -pubout
+openssl pkcs8 -topk8 -inform pem -in private-pkcs1.pem -outform pem -nocrypt -out private-key.pem
+rm private-pkcs1.pem
 ```
 **This key pair is the master encryption key for all data P4CP4D stores and should be backed up in a safe and secure location** 
 
@@ -106,8 +108,8 @@ You will need the following pieces of information for the installation process:
 - `$STORAGE_CLASS` - the Kubernetes storage class to use for storing data in P4CP4D.
 - `$PALANTIR_DOCKER_USER` - the username to authenticate to Palantir's container registry
 - `$PALANTIR_DOCKER_PASSWORD` - the password to authenticate to Palantir's container registry
-- `$DATA_STORAGE_ACCESS_KEY` - the access key for the AWS S3 compatible blob storage that you want P4CP4D to use.
-- `$DATA_STORAGE_ACCESS_KEY_SECRET` - the access key secret for the AWS S3 compatible blob storage that you want P4CP4D to use.
+- `$DATA_STORAGE_ACCESS_KEY` - the access key for the AWS S3 compatible blob storage that you want P4CP4D to use. This is what you might set as the value for `AWS_ACCESS_KEY_ID` environment variable for the AWS SDK or `fs.s3a.access.key` for a Hadoop S3A filesystem.
+- `$DATA_STORAGE_ACCESS_KEY_SECRET` - the access key secret for the AWS S3 compatible blob storage that you want P4CP4D to use. This is what you might set as the value for `AWS_SECRET_ACCESS_KEY` environment variable for the AWS SDK or `fs.s3a.secret.key` for a Hadoop S3A filesystem.
 - `$DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE` - the file containing the PEM encoded RSA public key that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
 - `$DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE` - the file containing the PEM encoded RSA private key that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
 - `$IBM_ENTITLEMENT_KEY` - the IBM Entitlement key that includes entitlements for CP4D and P4CP4D that you obtained as part of [Licenses](#licenses).
