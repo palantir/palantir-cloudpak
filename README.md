@@ -136,7 +136,7 @@ oc create secret generic -n $NAMESPACE data-storage-creds \
     --from-literal=access-key=$DATA_STORAGE_ACCESS_KEY \
     --from-literal=access-key-secret=$DATA_STORAGE_ACCESS_KEY_SECRET
 
-oc create secret generic -n $NAMESPACE registration \
+oc create secret generic -n $NAMESPACE registration-info \
     --from-literal=entitlement-key=$IBM_ENTITLEMENT_KEY \
     --from-literal=registration-key=$PALANTIR_REGISTRATION_KEY
 
