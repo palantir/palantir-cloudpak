@@ -55,12 +55,3 @@ dataStoragePath: ""
 # that Palantir should use for storing data.
 ####
 dataStorageEndpoint: ""
-####
-# `ibmEntitlementKey` is the IBM Container Registry entitlement key that is entitled to P4CP4D
-####
-ibmEntitlementKey: ""
-####
-# `palantirRegistrationKey` is the Palantir entitlement key required to authenticate during the
-# P4CP4D installation process. This should have been provided by IBM during the sales agreement.
-#### 
-palantirRegistrationKey: ""
