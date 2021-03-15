@@ -76,7 +76,7 @@ After this task is complete, Palantir will send you:
 
 ### Generating an RSA key pair for data encryption
 
-Palantir for IBM Cloud Pak for Data requires an RSA key pair that it will use for encrypting all data it stores in the AWS S3 compatible blob storage. This can be generated using the following steps:
+Palantir for IBM Cloud Pak for Data requires an RSA key pair that it will use for encrypting all data it stores in the AWS S3 compatible blob storage that is provided as part of installation. This can be generated using the following steps:
 ```bash
 openssl genrsa -out private-key.pem 2048
 openssl rsa -in private-key.pem -pubout -out public-key.pem
