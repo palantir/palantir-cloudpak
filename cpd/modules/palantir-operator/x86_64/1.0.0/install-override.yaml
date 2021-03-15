@@ -51,7 +51,7 @@ storageClass: "ibmc-file-gold-gid"
 ####
 dataStoragePath: ""
 ####
-# `dataStorageEndpoint` is the endpoint to use for access to the AWS S3 compatible blob storage API
+# `dataStorageEndpoint` is the API endpoint to use for access to the AWS S3 compatible blob storage API
 # that P4CP4D should use for storing data.
 ####
 dataStorageEndpoint: ""
