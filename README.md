@@ -81,6 +81,7 @@ Palantir for IBM Cloud Pak for Data requires an RSA key pair that it will use fo
 openssl genrsa -out private-pkcs1.pem 2048
 openssl rsa -in private-pkcs1.pem -out public-key.pem -outform pem -pubout
 openssl pkcs8 -topk8 -inform pem -in private-pkcs1.pem -outform pem -nocrypt -out private-key.pem
+rm private-pkcs1.pem
 ```
 **This key pair is the master encryption key for all data P4CP4D stores and should be backed up in a safe and secure location** 
 
