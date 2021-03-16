@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: 1.0.0 Release
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/41
