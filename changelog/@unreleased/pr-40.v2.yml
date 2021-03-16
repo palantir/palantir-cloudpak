@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: Start collecting health from the palantir operator
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/40
