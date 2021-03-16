@@ -6,6 +6,10 @@ metadata:
     app.kubernetes.io/name: "palantir-operator"
     app.kubernetes.io/managed-by: "palantir.com"
     app.kubernetes.io/instance: "palantir-operator"
+    com.palantir.sls.status/sls-status: ""
+  annotations:
+    com.palantir.sls.status/metadata: '{"entityId":"palantir-operator","entityName":"palantir-operator","productName":"palantir-operator","productVersion":"0.5.4","productGroup":"com.palantir.deployability","stackName":"palantir-operator","stackId":"palantir-operator"}'
+    com.palantir.sls.status/probe:'{"containerProbes":{"palantir-operator":{"path":"/palantir-operator","port":"3756"}}}'
 spec:
   replicas: 1
   selector:
@@ -53,7 +57,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:0.5.3"
+          image: "docker.external.palantir.build/deployability/palantir-operator:0.5.4"
           imagePullPolicy: Always
           securityContext:
             privileged: false
