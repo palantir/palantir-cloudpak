@@ -17,6 +17,8 @@ spec:
       name: palantir-operator
   template:
     metadata:
+      annotations:
+        com.palantir.rubix.pod/sls-service-info-v2: '{"service-name":"palantir-operator","service-id":"palantir-operator","stack-name":"palantir-operator","stack-id":"palantir-operator","containers":{"palantir-operator":{"product-name":"palantir-operator","product-version":"0.5.4"}}}'
       labels:
         app.kubernetes.io/name: "palantir-operator"
         app.kubernetes.io/managed-by: "palantir.com"
