@@ -42,4 +42,4 @@ data:
       application-class: small
   runtime.yml: |
     logging:
-      level: debug
+      level: info
