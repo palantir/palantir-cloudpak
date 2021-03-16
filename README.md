@@ -19,6 +19,9 @@ To install Palantir for IBM Cloud Pak for Data, you must have the following soft
   - [Planning for Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/plan/planning.html)
   - [Installing Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html)
 - IBM Watson Knowledge Catalog version 3.5.x.
+
+It is also recommended that you have:
+
 - IBM Watson Machine Learning version 3.5.x
 - IBM Watson Studio version 3.5.x
 
