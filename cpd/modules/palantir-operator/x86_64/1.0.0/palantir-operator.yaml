@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: "palantir-operator"
     com.palantir.sls.status/sls-status: ""
   annotations:
-    com.palantir.sls.status/metadata: '{"entityId":"palantir-operator","entityName":"palantir-operator","productName":"palantir-operator","productVersion":"0.5.4","productGroup":"com.palantir.deployability","stackName":"palantir-operator","stackId":"palantir-operator"}'
+    com.palantir.sls.status/metadata: '{"entityId":"palantir-operator","entityName":"palantir-operator","productName":"palantir-operator","productVersion":"1.0.0","productGroup":"com.palantir.deployability","stackName":"palantir-operator","stackId":"palantir-operator"}'
     com.palantir.sls.status/probe: '{"containerProbes":{"palantir-operator":{"path":"/palantir-operator","port":"3756"}}}'
 spec:
   replicas: 1
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        com.palantir.rubix.pod/sls-service-info-v2: '{"service-name":"palantir-operator","service-id":"palantir-operator","stack-name":"palantir-operator","stack-id":"palantir-operator","containers":{"palantir-operator":{"product-name":"palantir-operator","product-version":"0.5.4"}}}'
+        com.palantir.rubix.pod/sls-service-info-v2: '{"service-name":"palantir-operator","service-id":"palantir-operator","stack-name":"palantir-operator","stack-id":"palantir-operator","containers":{"palantir-operator":{"product-name":"palantir-operator","product-version":"1.0.0"}}}'
       labels:
         app.kubernetes.io/name: "palantir-operator"
         app.kubernetes.io/managed-by: "palantir.com"
@@ -59,7 +59,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:0.5.4"
+          image: "docker.external.palantir.build/deployability/palantir-operator:1.0.0"
           imagePullPolicy: Always
           securityContext:
             privileged: false
