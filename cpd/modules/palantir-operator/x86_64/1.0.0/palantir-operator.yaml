@@ -9,7 +9,7 @@ metadata:
     com.palantir.sls.status/sls-status: ""
   annotations:
     com.palantir.sls.status/metadata: '{"entityId":"palantir-operator","entityName":"palantir-operator","productName":"palantir-operator","productVersion":"0.5.4","productGroup":"com.palantir.deployability","stackName":"palantir-operator","stackId":"palantir-operator"}'
-    com.palantir.sls.status/probe:'{"containerProbes":{"palantir-operator":{"path":"/palantir-operator","port":"3756"}}}'
+    com.palantir.sls.status/probe: '{"containerProbes":{"palantir-operator":{"path":"/palantir-operator","port":"3756"}}}'
 spec:
   replicas: 1
   selector:
