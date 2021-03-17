@@ -53,7 +53,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:1.0.2"
+          image: "docker.external.palantir.build/deployability/palantir-operator:1.0.3"
           imagePullPolicy: Always
           securityContext:
             privileged: false
