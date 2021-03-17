@@ -1,0 +1,5 @@
+type: fix
+fix:
+  description: Upgrade operator to 1.0.3
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/45
