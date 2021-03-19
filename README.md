@@ -196,7 +196,7 @@ Once you have finished following the [installation steps](#installation-steps) f
 2. Create a “bastion“ container using the following command. This command will open a shell for you inside the ”bastion“ container.
 
 ```bash
-oc run -n $NAMESPACE bastion -it --image=registry.access.redhat.com/ubi8/ubi-minimal:latest -- bash
+oc run -n default bastion -it --image=registry.access.redhat.com/ubi8/ubi-minimal:latest -- bash
 ```
 
 3. Install jq using the following command inside the container created in Step 2
