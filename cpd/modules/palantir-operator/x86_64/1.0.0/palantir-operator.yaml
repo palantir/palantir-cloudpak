@@ -86,6 +86,28 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: LOG_ENVELOPE_SERVICE_NAME
+              value: palantir-operator
+            - name: LOG_ENVELOPE_SERVICE_ID
+              value: palantir-operator
+            - name: LOG_ENVELOPE_STACK_NAME
+              value: palantir
+            - name: LOG_ENVELOPE_STACK_ID
+              value: palantir
+            - name: LOG_ENVELOPE_PRODUCT_NAME
+              value: palantir-operator
+            - name: LOG_ENVELOPE_PRODUCT_VERSION
+              value: 1.0.3
+            - name: LOG_ENVELOPE_HOST
+              valuefrom:
+                fieldref:
+                  apiversion: v1
+                  fieldpath: spec.nodeName
+            - name: LOG_ENVELOPE_NODE_ID
+              valuefrom:
+                fieldref:
+                  apiversion: v1
+                  fieldpath: metadata.name
           resources:
             requests:
               cpu: 100m
