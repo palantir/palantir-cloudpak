@@ -14,6 +14,7 @@ data:
       port: 3756
       context-path: /palantir-operator
     cluster-config:
+      disable-firewalls: {{ .disableFirewalls }}
       registration-config-secret: registration-info
       data-storage:
         path: {{ .dataStoragePath }}
@@ -42,4 +43,4 @@ data:
       application-class: small
   runtime.yml: |
     logging:
-      level: debug
+      level: info

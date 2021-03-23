@@ -55,3 +55,10 @@ dataStoragePath: ""
 # that P4CP4D should use for storing data.
 ####
 dataStorageEndpoint: ""
+####
+# `disableFirewalls` disables the network firewalls that P4CP4D ships with. By default, this value
+# is set to false and network firewalls are enabled. You can usually safely leave this at its default value. 
+# You may need to use this configuration in cases where the Container Networking Interface (CNI) plugin configured
+# with your OSCP cluster does not work with P4CP4D's firewall policies.
+####
+disableFirewalls: false

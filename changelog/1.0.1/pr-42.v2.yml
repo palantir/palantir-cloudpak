@@ -1,0 +1,9 @@
+type: fix
+fix:
+  description: |-
+    Remove bash scripts
+
+    - Removes old bash scripts used for installing pre-reqs and
+      installing / uninstalling P4CP4D
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/42

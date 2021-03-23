@@ -20,6 +20,11 @@ To install Palantir for IBM Cloud Pak for Data, you must have the following soft
   - [Installing Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html)
 - IBM Watson Knowledge Catalog version 3.5.x.
 
+It is also recommended that you have:
+
+- IBM Watson Machine Learning version 3.5.x
+- IBM Watson Studio version 3.5.x
+
 _Architectures_
 
 Palantir for IBM Cloud Pak for Data must be run on compute nodes that support the x86_64 architecture.
@@ -191,7 +196,7 @@ Once you have finished following the [installation steps](#installation-steps) f
 2. Create a “bastion“ container using the following command. This command will open a shell for you inside the ”bastion“ container.
 
 ```bash
-oc run -n $NAMESPACE bastion -it --image=registry.access.redhat.com/ubi8/ubi-minimal:latest -- bash
+oc run -n default bastion -it --image=registry.access.redhat.com/ubi8/ubi-minimal:latest -- bash
 ```
 
 3. Install jq using the following command inside the container created in Step 2
