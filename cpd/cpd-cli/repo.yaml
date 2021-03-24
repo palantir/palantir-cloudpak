@@ -10,10 +10,10 @@ registry:
     namespace: <TODO: Replace with $NAMESPACE>
     url: cp.icr.io/cp/cpd
     username: cp
-    apikey: <TODO: Replace with $IBM_ICR_API_KEY>
+    apikey: <TODO: Replace with $IBM_ENTITLEMENT_KEY>
   -
     name: base-registry
     namespace: <TODO: Replace with $NAMESPACE>
     url: docker.external.palantir.build
     apikey: <TODO: Replace with $PALANTIR_DOCKER_PASSWORD>
-    username: <TODO: Replace with $PALANTIR_DOCKER_USERNAME>
+    username: <TODO: Replace with $PALANTIR_DOCKER_USER>
