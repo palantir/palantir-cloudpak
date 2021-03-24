@@ -35,6 +35,7 @@ spec:
   template:
     metadata:
       annotations:
+        com.palantir.deployability/status-sidecar-insecure-skip-verify: ""
         com.palantir.rubix.pod/sls-service-info-v2: >
           {
             "service-name": "palantir-operator",

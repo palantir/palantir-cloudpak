@@ -1,5 +1,0 @@
-type: improvement
-improvement:
-  description: Add environment variables for logging
-  links:
-  - https://github.com/palantir/palantir-cloudpak/pull/46
