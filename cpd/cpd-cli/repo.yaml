@@ -10,7 +10,7 @@ registry:
     namespace: <TODO: Replace with $NAMESPACE>
     url: cp.icr.io/cp/cpd
     username: cp
-    apikey: <TODO: Replace with $IBM_ICR_API_KEY>
+    apikey: <TODO: Replace with $IBM_ENTITLEMENT_KEY>
   -
     name: base-registry
     namespace: <TODO: Replace with $NAMESPACE>
