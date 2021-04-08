@@ -18,7 +18,7 @@ rules:
   verbs: ["*"]
 - apiGroups: ["networking.k8s.io"]
   resources: ["networkpolicies"]
-  verbs: ["list", "update", "get", "watch", "patch", "create", "delete"]
+  verbs: ["list", "update", "get", "watch", "patch", "create", "delete", "deletecollection"]
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["rolebindings", "clusterrolebindings"]
   verbs: ["list", "update", "get", "watch", "patch", "create", "delete"]
