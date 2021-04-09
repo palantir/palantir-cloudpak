@@ -12,7 +12,7 @@ rules:
   verbs: ["*"]
 - apiGroups: [""]
   resources: ["namespaces"]
-  verbs: ["get", "create", "update"]
+  verbs: ["get", "create", "update", "delete"]
 - apiGroups: ["apps", "extensions"]
   resources: ["deployments", "statefulsets", "ingresses"]
   verbs: ["*"]
