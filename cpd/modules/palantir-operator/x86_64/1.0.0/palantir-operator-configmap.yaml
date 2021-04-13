@@ -27,7 +27,7 @@ data:
       own-namespace-env-var: OPERATOR_NAMESPACE
       instance-name: {{ .instanceName }}
       frontdoor-config:
-        cpd-domain: {{ .cp4dFQDN }}
+        base-domain: {{ .cp4dFQDN }}
         base-64-cert: {{ .proxyCertificateBase64 }}
         base-64-key: {{ .proxyPrivateKeyBase64 }}
       envoy-service-spec:
