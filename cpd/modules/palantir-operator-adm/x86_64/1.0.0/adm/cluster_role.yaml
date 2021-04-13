@@ -38,7 +38,7 @@ rules:
   resources: ["routes/custom-host"]
   verbs: ["create"]
 - apiGroups: ["operator.openshift.io"]
-  resources: ["ingresscontroller"]
+  resources: ["ingresscontrollers"]
   verbs: ["get"]
 - apiGroups: ["policy"]
   resources: ["poddisruptionbudgets"]
