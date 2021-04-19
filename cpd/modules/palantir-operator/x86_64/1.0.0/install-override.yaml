@@ -16,14 +16,14 @@ cpdNamespace: ""
 ####
 cp4dFQDN: "foo.bar.baz.containers.appdomain.cloud"
 ####
-# `proxyCertificateBase64` is the base64 encoded <TODO: what format of certificate? x509?>
-# certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed
+# `proxyCertificateBase64` is the base64 encoded contents <TODO: what format of certificate? x509?>
+#  for the certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed
 # certificate, leave this field blank
 ####
 proxyCertificateBase64: ""
 ####
-# `proxyPrivateKeyBase64` is the base64 encoded <TODO: what format of private key?> private key
-# associated with the certificate provided in `proxyCertificateBase64`, which the P4CP4D reverse
+# `proxyPrivateKeyBase64` is the base64 encoded contents of the <TODO: what format of private key?> private
+#  key associated with the certificate provided in `proxyCertificateBase64`, which the P4CP4D reverse
 # proxy will use when establishing TLS connections for users of P4CP4D. To use a self-signed
 # certificate, leave this field blank
 ####
@@ -52,7 +52,7 @@ storageClass: "ibmc-file-gold-gid"
 dataStoragePath: ""
 ####
 # `dataStorageEndpoint` is the API endpoint to use for access to the AWS S3 compatible blob storage API
-# that P4CP4D should use for storing data.
+# that P4CP4D should use for storing data. like `s3.us-east-2.amazonaws.com`
 ####
 dataStorageEndpoint: ""
 ####
