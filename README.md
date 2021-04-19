@@ -171,7 +171,7 @@ cpd-cli install \
 
 #### Uninstalling
 
-If the installation fails and you want to retry it again, run the following commands before trying again:
+If the installation fails and you want to retry it again, run the following commands:
 
 ```bash
 cpd-cli uninstall \
@@ -182,6 +182,8 @@ cpd-cli uninstall \
 
 oc delete namespace $NAMESPACE
 ```
+
+Before restarting the installation, please email the Palantir team a request to re-enable the registration key.
 
 ### Validating a Palantir for IBM Cloud Pak for Data Installation
 
