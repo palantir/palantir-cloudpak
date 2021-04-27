@@ -9,6 +9,7 @@ metadata:
 data:
   install.yml: |
     use-console-log: true
+    on-prem: true
     server:
       address: 0.0.0.0
       port: 3756
