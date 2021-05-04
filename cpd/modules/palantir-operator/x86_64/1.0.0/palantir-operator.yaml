@@ -13,7 +13,7 @@ metadata:
         "entityId": "palantir-operator",
         "entityName": "palantir-operator",
         "productName": "palantir-operator",
-        "productVersion": "1.10.2",
+        "productVersion": "1.11.6",
         "productGroup": "com.palantir.deployability",
         "stackName": "palantir-operator",
         "stackId": "palantir-operator"
@@ -45,7 +45,7 @@ spec:
             "containers": {
               "palantir-operator": {
                 "product-name": "palantir-operator",
-                "product-version": "1.10.2"
+                "product-version": "1.11.6"
               }
             }
           }
@@ -89,7 +89,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:1.10.2"
+          image: "docker.external.palantir.build/deployability/palantir-operator:1.11.6"
           imagePullPolicy: Always
           securityContext:
             privileged: false
