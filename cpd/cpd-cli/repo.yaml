@@ -6,7 +6,7 @@ fileservers:
     url: "https://raw.github.com/IBM/cloud-pak/master/repo/cpd/3.5"
 registry: 
   - 
-    name: prod-entitled-registry
+    name: ibm-entitled-registry
     namespace: <TODO: Replace with $NAMESPACE>
     url: cp.icr.io/cp/cpd
     username: cp
