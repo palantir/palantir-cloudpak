@@ -13,7 +13,6 @@ data:
       dst-secret: palantir-ext-creds
     cpd-namespace: {{ .cpdNamespace }}
     disable-firewalls: {{ .disableFirewalls }}
-    registration-config-secret: registration-info
     data-storage:
       path: {{ .dataStoragePath }}
       endpoint: {{ .dataStorageEndpoint }}
@@ -25,4 +24,5 @@ data:
       base-64-key: {{ .proxyPrivateKeyBase64 }}
     image-registry-prefix: {{ .imageRegistryPrefix }}
     instance-name: {{ .instanceName }}
+    registration-config-secret: registration-info
     storage-class: {{ .storageClass }}
