@@ -1,0 +1,28 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/name: palantir-operator
+    app.kubernetes.io/managed-by: palantir.com
+    app.kubernetes.io/instance: palantir-operator
+  name: palantir-operator-user-config
+data:
+  userconfig.yml: |
+    artifactory-creds:
+      src-secret: docker-pull-{{ .palantirOperatorNamespace }}-docker-external-palantir-build-base-registry-registry
+      dst-secret: palantir-ext-creds
+    cpd-namespace: {{ .cpdNamespace }}
+    disable-firewalls: {{ .disableFirewalls }}
+    registration-config-secret: registration-info
+    data-storage:
+      path: {{ .dataStoragePath }}
+      endpoint: {{ .dataStorageEndpoint }}
+      creds-secret: data-storage-creds
+      encryption-secret: data-storage-encryption
+    frontdoor-config:
+      base-domain: {{ .cp4dFQDN }}
+      base-64-cert: {{ .proxyCertificateBase64 }}
+      base-64-key: {{ .proxyPrivateKeyBase64 }}
+    image-registry-prefix: {{ .imageRegistryPrefix }}
+    instance-name: {{ .instanceName }}
+    storage-class: {{ .storageClass }}
