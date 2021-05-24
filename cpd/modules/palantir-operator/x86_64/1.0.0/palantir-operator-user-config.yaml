@@ -23,6 +23,6 @@ data:
       base-64-cert: {{ .proxyCertificateBase64 }}
       base-64-key: {{ .proxyPrivateKeyBase64 }}
     image-registry-prefix: {{ .imageRegistryPrefix }}
-    instance-name: {{ .instanceName }}
+    instance-name: "{{ .instanceName }}"
     registration-config-secret: registration-info
     storage-class: {{ .storageClass }}

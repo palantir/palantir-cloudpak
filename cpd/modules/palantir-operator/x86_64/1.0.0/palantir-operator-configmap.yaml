@@ -26,7 +26,7 @@ data:
         src-secret: docker-pull-{{ .palantirOperatorNamespace }}-docker-external-palantir-build-base-registry-registry
         dst-secret: palantir-ext-creds
       own-namespace-env-var: OPERATOR_NAMESPACE
-      instance-name: {{ .instanceName }}
+      instance-name: "{{ .instanceName }}"
       frontdoor-config:
         base-domain: {{ .cp4dFQDN }}
         base-64-cert: {{ .proxyCertificateBase64 }}
