@@ -15,22 +15,7 @@ data:
       port: 3756
       context-path: /palantir-operator
     cluster-config:
-      disable-firewalls: {{ .disableFirewalls }}
-      registration-config-secret: registration-info
-      data-storage:
-        path: {{ .dataStoragePath }}
-        endpoint: {{ .dataStorageEndpoint }}
-        creds-secret: data-storage-creds
-        encryption-secret: data-storage-encryption
-      artifactory-creds:
-        src-secret: docker-pull-{{ .palantirOperatorNamespace }}-docker-external-palantir-build-base-registry-registry
-        dst-secret: palantir-ext-creds
       own-namespace-env-var: OPERATOR_NAMESPACE
-      instance-name: "{{ .instanceName }}"
-      frontdoor-config:
-        base-domain: {{ .cp4dFQDN }}
-        base-64-cert: {{ .proxyCertificateBase64 }}
-        base-64-key: {{ .proxyPrivateKeyBase64 }}
       envoy-service-spec:
         ports:
         - port: 6443
@@ -38,9 +23,6 @@ data:
           protocol: TCP
         selector:
           rubix-app: envoy
-      image-registry-prefix: {{ .imageRegistryPrefix }}
-      cpd-namespace: {{ .cpdNamespace }}
-      storage-class: {{ .storageClass }}
       application-class: small
       namespace-config:
         infrastructure: palantir-cloudpak-infrastructure
