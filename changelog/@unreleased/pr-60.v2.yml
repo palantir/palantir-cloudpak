@@ -1,0 +1,6 @@
+type: improvement
+improvement:
+  description: Remove redundant RoleBinding to the palantir-operator ServiceAccount,
+    it has a superset of permissions from its ClusterRole
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/60
