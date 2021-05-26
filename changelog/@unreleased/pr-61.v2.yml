@@ -1,0 +1,6 @@
+type: improvement
+improvement:
+  description: The k8s resources definitions defined in this repo are in sync with
+    those defined internally by palantir-operator
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/61
