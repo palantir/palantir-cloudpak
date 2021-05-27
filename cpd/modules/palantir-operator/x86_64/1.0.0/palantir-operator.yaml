@@ -13,7 +13,7 @@ metadata:
         "entityId": "palantir-operator",
         "entityName": "palantir-operator",
         "productName": "palantir-operator",
-        "productVersion": "1.18.0",
+        "productVersion": "1.20.0",
         "productGroup": "com.palantir.deployability",
         "stackName": "palantir-operator",
         "stackId": "palantir-operator"
@@ -31,7 +31,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: palantir-operator
+      rubix-app: palantir-operator
   template:
     metadata:
       annotations:
@@ -45,7 +45,7 @@ spec:
             "containers": {
               "palantir-operator": {
                 "product-name": "palantir-operator",
-                "product-version": "1.18.0"
+                "product-version": "1.20.0"
               }
             }
           }
@@ -53,7 +53,7 @@ spec:
         app.kubernetes.io/name: "palantir-operator"
         app.kubernetes.io/managed-by: "palantir.com"
         app.kubernetes.io/instance: "palantir-operator"
-        name: palantir-operator
+        rubix-app: palantir-operator
     spec:
       volumes:
         - name: config-volume
@@ -64,41 +64,13 @@ spec:
                 path: install.yml
               - key: runtime.yml
                 path: runtime.yml
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - amd64
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 3
-            preference:
-              matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - amd64
       serviceAccountName: palantir-operator
-      hostNetwork: false
-      hostPID: false
-      hostIPC: false
       securityContext:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:1.18.0"
+          image: "docker.external.palantir.build/deployability/palantir-operator:1.20.0"
           imagePullPolicy: Always
-          securityContext:
-            privileged: false
-            readOnlyRootFilesystem: false
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            capabilities:
-              drop:
-                - ALL
           env:
             - name: OPERATOR_NAMESPACE
               valueFrom:
