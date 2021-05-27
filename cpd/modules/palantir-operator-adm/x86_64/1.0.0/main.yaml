@@ -2,7 +2,6 @@ type: module
 category: adm-setup
 name: palantir-operator-adm
 files:
-- adm/role_binding.yaml
 - adm/role_binding_cpd.yaml
 - adm/role.yaml
 - adm/cluster_role.yaml
