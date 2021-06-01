@@ -36,7 +36,7 @@ Palantir for IBM Cloud Pak for Data can be run on any cloud provider so long as 
 - An OpenShift storage class is available that supports:
   - 3,000 IOPS with a sustained throughput of 256MiB/s
   - READ and WRITE average latency of less than 1ms and p95 latency of less than 5ms.
-- A supported blob storage service, with four dedicated buckets (two for data, one for backups, and one for audit logs). We provide specialized support with improved performance and security for AWS S3, Azure Blob Storage, and Google Cloud Storage. Additionally, we support other blob storage implementations that offer an AWS S3-compatible API and comparable performance.
+- A supported blob storage service, with four dedicated buckets (two for data, one for backups, and one for audit logs). We provide specialized support with optimized performance and security for AWS S3, Azure Blob Storage, and Google Cloud Storage. Additionally, we support other blob storage implementations that offer an AWS S3-compatible API and comparable performance.
 
 ### Security Considerations
 
