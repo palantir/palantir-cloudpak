@@ -1,0 +1,15 @@
+type: improvement
+improvement:
+  description: |-
+    [README] more information on blob storage
+
+    ## Before this PR
+    README only mentioned support AWS S3-compatible storage.
+
+    ## After this PR
+    Update the README with more information about supported blob storage options (e.g., Azure, GCP)
+
+    ## Possible downsides?
+    None.
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/63
