@@ -20,8 +20,7 @@ data:
       encryption-secret: data-storage-encryption
     frontdoor-config:
       base-domain: {{ .cp4dFQDN }}
-      base-64-cert: {{ .proxyCertificateBase64 }}
-      base-64-key: {{ .proxyPrivateKeyBase64 }}
+      tls-key-pair-secret:  {{ .proxyKeyPairSecret }}
     image-registry-prefix: {{ .imageRegistryPrefix }}
     instance-name: "{{ .instanceName }}"
     registration-config-secret: registration-info

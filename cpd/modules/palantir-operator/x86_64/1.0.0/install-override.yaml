@@ -15,19 +15,14 @@ cpdNamespace: ""
 # P4CP4D should integrate
 ####
 cp4dFQDN: "foo.bar.baz.containers.appdomain.cloud"
+
 ####
-# `proxyCertificateBase64` is the base64 encoded contents <TODO: what format of certificate? x509?>
-#  for the certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed
-# certificate, leave this field blank
+# `proxyKeyPairSecret` is name of the Kubernetes secret that contains the TLS key pair, which the
+# P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. This should
+# be the same value as the $P4CP4D_PROXY_TLS_KEY_PAIR_SECRET specified in the install steps. To use a
+# self-signed certificate, leave this field blank.
 ####
-proxyCertificateBase64: ""
-####
-# `proxyPrivateKeyBase64` is the base64 encoded contents of the <TODO: what format of private key?> private
-#  key associated with the certificate provided in `proxyCertificateBase64`, which the P4CP4D reverse
-# proxy will use when establishing TLS connections for users of P4CP4D. To use a self-signed
-# certificate, leave this field blank
-####
-proxyPrivateKeyBase64: ""
+proxyKeyPairSecret: ""
 ####
 # `instanceName` is the name of the Palanir instance that will be installed. By default, leave
 # this value as an empty string, however the field must still exist
