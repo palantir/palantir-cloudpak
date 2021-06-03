@@ -121,7 +121,7 @@ You will need the following pieces of information for the installation process:
 - `$PALANTIR_REGISTRATION_KEY` - the Palantir registration key that you obtained as part of [Licenses](#licenses).
 - `$P4CP4D_PROXY_CERTIFICATE_BASE64` - the base64 encoded contents of the PEM encoded certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed certificate, do not set this field.
 - `$P4CP4D_PROXY_PRIVATE_KEY_BASE64` - the base64 encoded contents of the PEM encoded private key associated with the certificate provided in `$P4CP4D_PROXY_CERTIFICATE_BASE64`, which the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. To use a self-signed certificate, do not set this field.
-- `$P4CP4D_PROXY_TLS_KEY_PAIR_SECRET` - the name of the secret that will store TLS key pair values specified by `$P4CP4D_PROXY_CERTIFICATE_BASE64` and `$P4CP4D_PROXY_PRIVATE_KEY_BASE64`. To use a self-signed certificate, do not set this field.
+- `$P4CP4D_PROXY_CERT_SECRET` - the name of the secret that will store TLS key pair values specified by `$P4CP4D_PROXY_CERTIFICATE_BASE64` and `$P4CP4D_PROXY_PRIVATE_KEY_BASE64`. To use a self-signed certificate, do not set this field.
 
 These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
 
@@ -152,7 +152,7 @@ oc create secret generic -n $NAMESPACE registration-info \
 
 # To use self-signed certificates for the P4CP4D proxy, do not run this command. Only run this command
 # if you specified values for $P4CP4D_PROXY_* environment variables above.
-oc create secret generic -n $NAMESPACE $P4CP4D_PROXY_TLS_KEY_PAIR_SECRET \
+oc create secret generic -n $NAMESPACE $P4CP4D_PROXY_CERT_SECRET \
     --from-literal=certificate=$P4CP4D_PROXY_CERTIFICATE_BASE64 \
     --from-literal=private-key=$P4CP4D_PROXY_PRIVATE_KEY_BASE64
 
