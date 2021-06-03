@@ -1,0 +1,6 @@
+type: improvement
+improvement:
+  description: The user-specified front door TLS key pair is specified as a secret
+    and referenced by name via the user config ConfigMap
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/65
