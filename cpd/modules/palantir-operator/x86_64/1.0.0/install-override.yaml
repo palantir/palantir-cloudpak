@@ -15,7 +15,6 @@ cpdNamespace: ""
 # P4CP4D should integrate
 ####
 cp4dFQDN: "foo.bar.baz.containers.appdomain.cloud"
-
 ####
 # `proxyKeyPairSecret` is name of the Kubernetes secret that contains the TLS key pair, which the
 # P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. This should
