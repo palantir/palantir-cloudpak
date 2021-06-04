@@ -149,10 +149,7 @@ oc create secret generic -n $NAMESPACE registration-info \
     --from-literal=entitlement-key=$IBM_ENTITLEMENT_KEY \
     --from-literal=registration-key=$PALANTIR_REGISTRATION_KEY
 
-[[ ! -z $P4CP4D_PROXY_CERTIFICATE_FILE && ! -z $P4CP4D_PROXY_PRIVATE_KEY_FILE ]] && oc create secret tls -n $NAMESPACE proxy-certificate \
-    --cert=$P4CP4D_PROXY_CERTIFICATE_FILE \
-    --key=$P4CP4D_PROXY_PRIVATE_KEY_FILE \
-    || echo "Using self-signed certificate for P4CP4D reverse proxy"
+[[ ! -z $P4CP4D_PROXY_CERTIFICATE_FILE && ! -z $P4CP4D_PROXY_PRIVATE_KEY_FILE ]] && oc create secret tls -n $NAMESPACE proxy-certificate --cert=$P4CP4D_PROXY_CERTIFICATE_FILE --key=$P4CP4D_PROXY_PRIVATE_KEY_FILE || echo "Using self-signed certificate for P4CP4D reverse proxy"
 
 cpd-cli adm \
     --repo ./repo.yaml \
