@@ -121,7 +121,7 @@ You will need the following pieces of information for the installation process:
 - `$PALANTIR_REGISTRATION_KEY` - the Palantir registration key that you obtained as part of [Licenses](#licenses).
 - `$P4CP4D_PROXY_CERTIFICATE_FILE` - the file containing the PEM encoded certificate the P4CP4D reverse proxy will present to users of P4CP4D. The initial and last lines from PEM (e.g. `---BEGIN/END CERTIFICATE---`) should not be included in the file contents. To use a self-signed certificate, do not set this field.
 - `$P4CP4D_PROXY_PRIVATE_KEY_FILE` - the file containing the PEM encoded private key associated with the certificate provided in `$P4CP4D_PROXY_CERTIFICATE_FILE`, which the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. The initial and last lines from PEM (e.g. `---BEGIN/END CERTIFICATE---`) should not be included in the file contents. To use a self-signed certificate, do not set this field.
-- `$P4CP4D_PROXY_CERT_SECRET` - the name of the secret (e.g. `front-door-cert-secret`) that will store TLS key pair values specified by `$P4CP4D_PROXY_CERTIFICATE_FILE` and `$P4CP4D_PROXY_PRIVATE_KEY_FILE`. To use a self-signed certificate, do not set this field.
+- `$P4CP4D_PROXY_CERT_SECRET` - the name of the secret (e.g. `proxy-certificate`) that will store TLS key pair values specified by `$P4CP4D_PROXY_CERTIFICATE_FILE` and `$P4CP4D_PROXY_PRIVATE_KEY_FILE`. To use a self-signed certificate, do not set this field.
 
 These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
 
