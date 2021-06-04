@@ -16,13 +16,6 @@ cpdNamespace: ""
 ####
 cp4dFQDN: "foo.bar.baz.containers.appdomain.cloud"
 ####
-# `proxyCertSecret` is name of the Kubernetes secret that contains the TLS key pair, which the
-# P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. This should
-# be the same value as the $P4CP4D_PROXY_CERT_SECRET specified in the install steps. To use a
-# self-signed certificate, leave this field blank.
-####
-proxyCertSecret: ""
-####
 # `instanceName` is the name of the Palanir instance that will be installed. By default, leave
 # this value as an empty string, however the field must still exist
 ####
