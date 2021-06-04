@@ -119,6 +119,8 @@ You will need the following pieces of information for the installation process:
 - `$DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE` - the file containing the PEM encoded RSA private key that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
 - `$IBM_ENTITLEMENT_KEY` - the IBM Entitlement key that includes entitlements for CP4D and P4CP4D that you obtained as part of [Licenses](#licenses).
 - `$PALANTIR_REGISTRATION_KEY` - the Palantir registration key that you obtained as part of [Licenses](#licenses).
+- `$P4CP4D_PROXY_CERTIFICATE_FILE` - the file containing the PEM encoded certificate the P4CP4D reverse proxy will present to users of P4CP4D. To use a self-signed certificate, do not set this field.
+- `$P4CP4D_PROXY_PRIVATE_KEY_FILE` - the file containing the PEM encoded private key associated with the certificate provided in `$P4CP4D_PROXY_CERTIFICATE_FILE`, which the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. To use a self-signed certificate, do not set this field.
 
 These will be referenced in the installation steps below. It is easiest to export these values as environment variables so it can referenced in the `cpd-cli` steps.
 
@@ -146,6 +148,8 @@ oc create secret generic -n $NAMESPACE data-storage-creds \
 oc create secret generic -n $NAMESPACE registration-info \
     --from-literal=entitlement-key=$IBM_ENTITLEMENT_KEY \
     --from-literal=registration-key=$PALANTIR_REGISTRATION_KEY
+
+[[ ! -z $P4CP4D_PROXY_CERTIFICATE_FILE && ! -z $P4CP4D_PROXY_PRIVATE_KEY_FILE ]] && oc create secret tls -n $NAMESPACE proxy-certificate --cert=$P4CP4D_PROXY_CERTIFICATE_FILE --key=$P4CP4D_PROXY_PRIVATE_KEY_FILE || echo "Using self-signed certificate for P4CP4D reverse proxy"
 
 cpd-cli adm \
     --repo ./repo.yaml \
