@@ -3,7 +3,13 @@ resources:
     name: "palantir-operator"
   resourceDefs:
     files:
+      - ref: install.sh
+        mediaType: application/vnd.case.resource.script.bash.v1+launcher
       - ref: operator.yaml
         mediaType: application/vnd.case.resource.k8s.v1+yaml
       - ref: configmap.yaml
+        mediaType: application/vnd.case.resource.k8s.v1+yaml
+      - ref: userconfig.yaml
+        mediaType: application/vnd.case.resource.k8s.v1+yaml
+      - ref: rbac.yaml
         mediaType: application/vnd.case.resource.k8s.v1+yaml
