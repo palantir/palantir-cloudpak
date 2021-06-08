@@ -18,10 +18,10 @@ supports:
 classifications:
   limited: {}
 licenses:
-  license:
+  apache:
     ref: LICENSE
     mediaType: text/plain; charset=utf-8
     metadata:
-      displayDescription: ""
-      displayName: LICENSE
-      name: license
+      displayDescription: "License for CASE material"
+      displayName: apache
+      name: apache

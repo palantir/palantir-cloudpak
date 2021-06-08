@@ -9,20 +9,13 @@ metadata:
 data:
   install.yml: |
     use-console-log: true
+    on-prem: true
     server:
       address: 0.0.0.0
       port: 3756
       context-path: /palantir-operator
     cluster-config:
-      entitlement-key: {{ .ibmEntitlementKey }}
-      registration-key: {{ .palantirRegistrationKey }}
-      artifactory-creds-secret: palantir-ext-creds
       own-namespace-env-var: OPERATOR_NAMESPACE
-      instance-name: {{ .instanceName }}
-      frontdoor-config:
-        cpd-domain: {{ .cp4dFQDN }}
-        base-64-cert: {{ .proxyCertificateBase64 }}
-        base-64-key: {{ .proxyPrivateKeyBase64 }}
       envoy-service-spec:
         ports:
         - port: 6443
@@ -30,9 +23,13 @@ data:
           protocol: TCP
         selector:
           rubix-app: envoy
-      image-registry-prefix: {{ .imageRegistryPrefix }}
-      storage-class: {{ .storageClass }}
       application-class: small
+      namespace-config:
+        infrastructure: palantir-cloudpak-infrastructure
+        services: palantir-cloudpak-services
+        data: palantir-cloudpak-data
+        compute-spark: palantir-cloudpak-compute-spark
+        compute-misc: palantir-cloudpak-compute-misc
   runtime.yml: |
     logging:
-      level: debug
+      level: info

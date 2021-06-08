@@ -3,10 +3,15 @@ prereqs:
     k8sDistros:
       openshift:
         distribution: openshift
-        semver: ">=4.5.0"
+        semver: ">=1.18.0"
+    client:
+      oc:
+        command: "oc"
+        versionArgs: "version"
+        versionRegex: "Client Version: v4.\\d+"
     k8sResources:
       workerIntelLinux:
-        kind: node
+        kind: Node
         apiGroup: ""
         version: v1
         selector:
@@ -14,14 +19,3 @@ prereqs:
           - {key: beta.kubernetes.io/arch, operator: In, values: [amd64]}
           - {key: beta.kubernetes.io/os, operator: In, values: [linux]}
           - {key: node-role.kubernetes.io/worker, operator: Exists}
-      restrictedSCC:          
-        kind: SecurityContextConstraints
-        apiGroup: security.openshift.io
-        name: restricted
-        version: v1
-    k8sResourceVersions:
-      rbac:
-        kind: ClusterRole
-        apiGroup: rbac.authorization.k8s.io
-        version: v1
-
