@@ -8,7 +8,7 @@ prereqs:
       oc:
         command: "oc"
         versionArgs: "version"
-        versionRegex: "Client Version: v4.\\d+"
+        versionRegex: "Client Version: v?4.\\d+"
     k8sResources:
       workerIntelLinux:
         kind: Node
