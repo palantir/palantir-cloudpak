@@ -2,26 +2,36 @@
 
 set -eo pipefail
 
+CONFIG_FILE="configuration.sh"
+if [[ ! -f $CONFIG_FILE ]]; then
+    echo "File 'configuration.sh' does not exist."
+    exit 1
+fi
+
+source $CONFIG_FILE
+
 [[ "$DEBUG" == 'true' ]] && set -x
 
 ### Check pre-requisite input information ###
-missing_variable=0
-[[ -z $NAMESPACE ]] && echo "\$NAMESPACE is a required environment variable and was missing" && missing_variable=1
-[[ -z $CPD_NAMESPACE ]] && echo "\$CPD_NAMESPACE is a required environment variable and was missing" && missing_variable=1
-[[ -z $CPD_DOMAIN ]] && echo "\$CPD_DOMAIN is a required environment variable and was missing" && missing_variable=1
-[[ -z $IBM_ENTITLEMENT_KEY ]] && echo "\$IBM_ENTITLEMENT_KEY is a required environment variable and was missing" && missing_variable=1
-[[ -z $PALANTIR_REGISTRATION_KEY ]] && echo "\$PALANTIR_REGISTRATION_KEY is a required environment variable and was missing" && missing_variable=1
-[[ -z $STORAGE_CLASS ]] && echo "\$STORAGE_CLASS is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_PATH ]] && echo "\$DATA_STORAGE_PATH is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_ENDPOINT ]] && echo "\$DATA_STORAGE_ENDPOINT is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE ]] && echo "\$DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE ]] && echo "\$DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_ACCESS_KEY ]] && echo "\$DATA_STORAGE_ACCESS_KEY is a required environment variable and was missing" && missing_variable=1
-[[ -z $DATA_STORAGE_ACCESS_KEY_SECRET ]] && echo "\$DATA_STORAGE_ACCESS_KEY_SECRET is a required environment variable and was missing" && missing_variable=1
-[[ -z $PALANTIR_DOCKER_USER ]] && echo "\$PALANTIR_DOCKER_USER is a required environment variable and was missing" && missing_variable=1
-[[ -z $PALANTIR_DOCKER_PASSWORD ]] && echo "\$PALANTIR_DOCKER_PASSWORD is a required environment variable and was missing" && missing_variable=1
+missing_variables=()
+[[ -z $NAMESPACE ]] && missing_variables+=("NAMESPACE")
+[[ -z $CPD_NAMESPACE ]] && missing_variables+=("CPD_NAMESPACE")
+[[ -z $CPD_DOMAIN ]] && missing_variables+=("CPD_DOMAIN")
+[[ -z $IBM_ENTITLEMENT_KEY ]] && missing_variables+=("IBM_ENTITLEMENT_KEY")
+[[ -z $PALANTIR_REGISTRATION_KEY ]] && missing_variables+=("PALANTIR_REGISTRATION_KEY")
+[[ -z $STORAGE_CLASS ]] && missing_variables+=("STORAGE_CLASS")
+[[ -z $DATA_STORAGE_PATH ]] && missing_variables+=("DATA_STORAGE_PATH")
+[[ -z $DATA_STORAGE_ENDPOINT ]] && missing_variables+=("DATA_STORAGE_ENDPOINT")
+[[ -z $DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE ]] && missing_variables+=("DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE")
+[[ -z $DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE ]] && missing_variables+=("DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE")
+[[ -z $DATA_STORAGE_ACCESS_KEY ]] && missing_variables+=("DATA_STORAGE_ACCESS_KEY")
+[[ -z $DATA_STORAGE_ACCESS_KEY_SECRET ]] && missing_variables+=("DATA_STORAGE_ACCESS_KEY_SECRET")
+[[ -z $PALANTIR_DOCKER_USER ]] && missing_variables+=("PALANTIR_DOCKER_USER")
+[[ -z $PALANTIR_DOCKER_PASSWORD ]] && missing_variables+=("PALANTIR_DOCKER_PASSWORD")
 
-if [[ $missing_variable -eq 1 ]]; then
+if [[ "${#missing_variables[@]}" -ne "0" ]]; then
+  echo "One or more required configuration keys were not specified in 'configuration.sh':"
+  printf '%s\n' "${missing_variables[@]}"
   exit 1
 fi
 
