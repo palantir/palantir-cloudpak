@@ -34,7 +34,7 @@ DATA_STORAGE_ENDPOINT=''
 DATA_STORAGE_ACCESS_KEY=''
 DATA_STORAGE_ACCESS_KEY_SECRET=''
 
-# The files containing the PEM encoded RSA public and private keys that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
+# The files containing the PEM encoded RSA keypair that P4CP4D should use for data encryption. See https://github.com/palantir/palantir-cloudpak/#generating-an-rsa-key-pair-for-data-encryption for how to generate this.
 DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE=''
 DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE=''
 
@@ -42,8 +42,8 @@ DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE=''
 ##### OPTIONAL VALUES - These may be left empty #####
 #####################################################
 
-# The files containing a PEM encoded certificate and private key that  the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. If these are unset, a self signed certificate is automatically generated.
-P4CP4D_PROXY_CERTIFICATE_FILE='' 
+# The files containing a PEM encoded certificate and private key that the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. If either of these are unset, a self signed certificate is automatically generated.
+P4CP4D_PROXY_CERTIFICATE_FILE=''
 P4CP4D_PROXY_PRIVATE_KEY_FILE=''
 
 # Whether network firewalls should be disabled or not. Set to either `true` or `false`. If not set, defaults to `false`. 
