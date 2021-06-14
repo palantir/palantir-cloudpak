@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+######################################################
+##### REQUIRED VALUES - These must be filled out #####
+######################################################
+
+# The IBM Entitlement key and Palantir registration key that includes entitlements for CP4D and P4CP4D that you obtained as part of https://github.com/palantir/palantir-cloudpak#licenses
+IBM_ENTITLEMENT_KEY='' 
+PALANTIR_REGISTRATION_KEY=''
+
+# Pick the namespace that you want to install the palantir-operator in. Note that this should be different than the namespace in which Cloud Pak for Data has been installed.
+NAMESPACE=''
+
+# The existing OpenShift namespace that the IBM Cloud Pak for Data installation exists within.
+CPD_NAMESPACE=''
+
+# The fully qualified domain name of the Cloud Pak for Data instance with which P4CP4D should integrate with.
+CPD_DOMAIN=''
+
+# The Kubernetes storage class to use for storing data in P4CP4D.
+STORAGE_CLASS=''
+
+# The username and password to authenticate to Palantir's container registry
+PALANTIR_DOCKER_USER=''
+PALANTIR_DOCKER_PASSWORD=''
+
+# The path in the AWS S3 compatible blob storage that P4CP4D should use for storing data. This should follow a format like `s3a://<path to use>`
+DATA_STORAGE_PATH='' 
+
+# The API endpoint to use for access to the AWS S3 compatible blob storage API that P4CP4D should use for storing data like `s3.us-east-2.amazonaws.com`
+DATA_STORAGE_ENDPOINT=''
+
+# The access key and secret for the AWS S3 compatible blob storage that you want P4CP4D to use. This is what you might set as the value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables for the AWS SDK or `fs.s3a.access.key` and `fs.s3a.secret.key` for a Hadoop S3A filesystem.
+DATA_STORAGE_ACCESS_KEY=''
+DATA_STORAGE_ACCESS_KEY_SECRET=''
+
+# The files containing the PEM encoded RSA public and private keys that P4CP4D should use for data encryption. See [Generating an RSA key pair for data encryption](#generating-an-rsa-key-pair-for-data-encryption) for how to generate this.
+DATA_STORAGE_ENCRYPTION_PUBLIC_KEY_FILE=''
+DATA_STORAGE_ENCRYPTION_PRIVATE_KEY_FILE=''
+
+#####################################################
+##### OPTIONAL VALUES - These may be left empty #####
+#####################################################
+
+# The files containing a PEM encoded certificate and private key that  the P4CP4D reverse proxy will use when establishing TLS connections for users of P4CP4D. If these are unset, a self signed certificate is automatically generated.
+P4CP4D_PROXY_CERTIFICATE_FILE='' 
+P4CP4D_PROXY_PRIVATE_KEY_FILE=''
+
+# Whether network firewalls should be disabled or not. Set to either `true` or `false`. If not set, defaults to `false`. 
+# You can usually safely leave this at its default value. You may need to use this configuration in cases where the Container Networking Interface (CNI) plugin configured with your OSCP cluster does not work with P4CP4D's firewall policies.
+DISABLE_NETWORK_FIREWALLS='' 
+
