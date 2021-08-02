@@ -12,6 +12,7 @@ data:
       src-secret: palantir-ext-creds
       dst-secret: palantir-ext-creds
     cpd-namespace: #CPD_NAMESPACE#
+    cpd-domain: #CPD_DOMAIN#
     disable-firewalls: #DISABLE_NETWORK_FIREWALLS#
     data-storage:
       path: #DATA_STORAGE_PATH#
@@ -20,6 +21,7 @@ data:
       encryption-secret: data-storage-encryption
     frontdoor-config:
       base-domain: #CPD_DOMAIN#
+      domain: palantir-cloudpak.#CPD_DOMAIN#
       cert-secret:  proxy-certificate
     image-registry-prefix: docker.external.palantir.build
     registration-config-secret: registration-info
