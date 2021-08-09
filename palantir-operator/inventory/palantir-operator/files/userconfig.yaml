@@ -20,7 +20,6 @@ data:
       creds-secret: data-storage-creds
       encryption-secret: data-storage-encryption
     frontdoor-config:
-      base-domain: #CPD_DOMAIN#
       domain: palantir-cloudpak.#CPD_DOMAIN#
       cert-secret:  proxy-certificate
     image-registry-prefix: docker.external.palantir.build

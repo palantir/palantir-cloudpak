@@ -1,0 +1,6 @@
+type: improvement
+improvement:
+  description: remove unused, deprecated pref from user config and bump palantir-operator
+    version
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/73
