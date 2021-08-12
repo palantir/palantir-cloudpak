@@ -24,12 +24,6 @@ data:
         selector:
           rubix-app: envoy
       application-class: small
-      namespace-config:
-        infrastructure: palantir-cloudpak-infrastructure
-        services: palantir-cloudpak-services
-        data: palantir-cloudpak-data
-        compute-spark: palantir-cloudpak-compute-spark
-        compute-misc: palantir-cloudpak-compute-misc
   runtime.yml: |
     logging:
       level: info
