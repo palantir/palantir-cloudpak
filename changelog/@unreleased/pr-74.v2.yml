@@ -1,0 +1,6 @@
+type: improvement
+improvement:
+  description: add namespace-prefix pref to userconfig and bump palantir-operator
+    version
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/74
