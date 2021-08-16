@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: Custom CAs can be added to Palantir Cloudpak
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/75
