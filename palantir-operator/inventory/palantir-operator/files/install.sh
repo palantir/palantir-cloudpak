@@ -68,6 +68,12 @@ else
     echo "Using self-signed certificate for P4CP4D proxy"
 fi
 
+CUSTOM_CA_CERTIFICATES_DATA=""
+if [[ -n $CUSTOM_CA_CERTIFICATES_FILE ]]; then
+   echo "Using custom CA certificates"
+   CUSTOM_CA_CERTIFICATES_DATA=$(cat $CUSTOM_CA_CERTIFICATES_FILE | base64 -w0)
+fi
+
 manifestsDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 sed -e "s|#DISABLE_NETWORK_FIREWALLS#|$DISABLE_NETWORK_FIREWALLS|g" \
@@ -76,6 +82,7 @@ sed -e "s|#DISABLE_NETWORK_FIREWALLS#|$DISABLE_NETWORK_FIREWALLS|g" \
   -e "s|#DATA_STORAGE_ENDPOINT#|$DATA_STORAGE_ENDPOINT|g" \
   -e "s|#CPD_NAMESPACE#|$CPD_NAMESPACE|g" \
   -e "s|#CPD_DOMAIN#|$CPD_DOMAIN|g" \
+  -e "s|#CUSTOM_CA_CERTIFICATES_DATA#|$CUSTOM_CA_CERTIFICATES_DATA|g" \
   "$manifestsDir"/userconfig.yaml | oc apply -n "$NAMESPACE" -f -
 
 sed -e "s|#NAMESPACE#|$NAMESPACE|g" "$manifestsDir"/rbac.yaml | oc apply -n "$NAMESPACE" -f -

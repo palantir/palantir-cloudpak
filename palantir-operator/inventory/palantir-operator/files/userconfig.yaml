@@ -26,3 +26,4 @@ data:
     namespace-prefix: palantir-cloudpak
     registration-config-secret: registration-info
     storage-class: #STORAGE_CLASS#
+    additional-ca-certificates: #CUSTOM_CA_CERTIFICATES_DATA#
