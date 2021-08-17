@@ -71,7 +71,7 @@ fi
 CUSTOM_CA_CERTIFICATES_DATA=""
 if [[ -n $CUSTOM_CA_CERTIFICATES_FILE ]]; then
    echo "Using custom CA certificates"
-   CUSTOM_CA_CERTIFICATES_DATA=$(cat $CUSTOM_CA_CERTIFICATES_FILE | base64)
+   CUSTOM_CA_CERTIFICATES_DATA=$(cat $CUSTOM_CA_CERTIFICATES_FILE | base64 -w0)
 fi
 
 manifestsDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
