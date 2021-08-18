@@ -13,7 +13,7 @@ metadata:
         "entityId": "palantir-operator",
         "entityName": "palantir-operator",
         "productName": "palantir-operator",
-        "productVersion": "1.57.0",
+        "productVersion": "1.58.0",
         "productGroup": "com.palantir.deployability",
         "stackName": "palantir-operator",
         "stackId": "palantir-operator"
@@ -45,7 +45,7 @@ spec:
             "containers": {
               "palantir-operator": {
                 "product-name": "palantir-operator",
-                "product-version": "1.57.0"
+                "product-version": "1.58.0"
               }
             }
           }
@@ -69,7 +69,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: palantir-operator
-          image: "docker.external.palantir.build/deployability/palantir-operator:1.57.0"
+          image: "docker.external.palantir.build/deployability/palantir-operator:1.58.0"
           imagePullPolicy: Always
           env:
             - name: OPERATOR_NAMESPACE
@@ -83,10 +83,10 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 128Mi
+              memory: 256Mi
             limits:
               cpu: 100m
-              memory: 128Mi
+              memory: 256Mi
           volumeMounts:
             - name: config-volume
               mountPath: "/opt/palantir/services/palantir-operator/var/conf"
