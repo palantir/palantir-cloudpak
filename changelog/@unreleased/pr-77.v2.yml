@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: 'Update the documentation to the latest compatible versions. '
+  links:
+  - https://github.com/palantir/palantir-cloudpak/pull/77
