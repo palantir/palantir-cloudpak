@@ -40,8 +40,8 @@ spec:
           {
             "service-name": "palantir-operator",
             "service-id": "palantir-operator",
-            "stack-name": "palantir",
-            "stack-id":"palantir",
+            "stack-name": "palantir-operator",
+            "stack-id":"palantir-operator",
             "containers": {
               "palantir-operator": {
                 "product-name": "palantir-operator",
