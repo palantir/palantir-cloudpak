@@ -24,6 +24,8 @@ data:
       cert-secret:  proxy-certificate
     image-registry-prefix: docker.external.palantir.build
     namespace-prefix: palantir-cloudpak
-    registration-config-secret: registration-info
+    registration-config:
+      entitlement:
+        registration-config-secret: registration-info
     storage-class: #STORAGE_CLASS#
     additional-ca-certificates: #CUSTOM_CA_CERTIFICATES_DATA#
