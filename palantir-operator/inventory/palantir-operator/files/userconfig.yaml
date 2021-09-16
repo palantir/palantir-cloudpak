@@ -23,7 +23,8 @@ data:
       domain: palantir-cloudpak.#CPD_DOMAIN#
       cert-secret:  proxy-certificate
     image-registry-prefix: docker.external.palantir.build
-    namespace-prefix: palantir-cloudpak
+    namespace-config: 
+      prefix: palantir-cloudpak
     registration-config:
       entitlement:
         registration-config-secret: registration-info
