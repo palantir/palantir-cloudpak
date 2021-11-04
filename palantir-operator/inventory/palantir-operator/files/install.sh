@@ -83,6 +83,7 @@ sed -e "s|#DISABLE_NETWORK_FIREWALLS#|$DISABLE_NETWORK_FIREWALLS|g" \
   -e "s|#CPD_NAMESPACE#|$CPD_NAMESPACE|g" \
   -e "s|#CPD_DOMAIN#|$CPD_DOMAIN|g" \
   -e "s|#CUSTOM_CA_CERTIFICATES_DATA#|$CUSTOM_CA_CERTIFICATES_DATA|g" \
+  -e "s|#NAMESPACE#|$NAMESPACE|g" \
   "$manifestsDir"/userconfig.yaml | oc apply -n "$NAMESPACE" -f -
 
 sed -e "s|#NAMESPACE#|$NAMESPACE|g" "$manifestsDir"/rbac.yaml | oc apply -n "$NAMESPACE" -f -
