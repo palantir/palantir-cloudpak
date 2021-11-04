@@ -8,9 +8,14 @@ metadata:
   name: palantir-operator-user-config
 data:
   userconfig.yml: |
-    artifactory-creds:
-      src-secret: palantir-ext-creds
-      dst-secret: palantir-ext-creds
+    artifacts-config:
+      sls-config-url: https://artifactory.external.palantir.build/artifactory/internal-sls-config
+      container-registry-prefix: docker.external.palantir.build
+      auth:
+        username-password:
+          docker-config-secret:
+            name: palantir-ext-creds
+            namespace: #NAMESPACE#
     cpd-namespace: #CPD_NAMESPACE#
     cpd-domain: #CPD_DOMAIN#
     disable-firewalls: #DISABLE_NETWORK_FIREWALLS#
@@ -22,7 +27,6 @@ data:
     frontdoor-config:
       domain: palantir-cloudpak.#CPD_DOMAIN#
       cert-secret:  proxy-certificate
-    image-registry-prefix: docker.external.palantir.build
     namespace-config: 
       prefix: palantir-cloudpak
     registration-config:
