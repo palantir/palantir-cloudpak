@@ -4,7 +4,7 @@
 
 # palantir-cloudpak
 
-This repository provides a CASE bundle for the palantir-operator to install and run Palantir for IBM Cloud Pak For Data (P4CP4D) on alongside Cloud Pak For Data 3.5+ in an Open Shift Container Platform (OCP) 4.5+.
+This repository provides a CASE bundle for the palantir-operator to install and run Palantir for IBM Cloud Pak For Data (P4CP4D) on alongside Cloud Pak For Data 4.0+ in an Open Shift Container Platform (OCP) 4.5+.
 
 ## Planning
 
@@ -15,15 +15,15 @@ You can install Palantir for IBM Cloud Pak for Data on top of Cloud Pak for Data
 To install Palantir for IBM Cloud Pak for Data, you must have the following software already installed on your cluster:
 
 - Red hat OpenShift Container Platform version 4.5 or later.
-- IBM Cloud Pak for Data 3.5 or later refreshes. For more information, see:
-  - [Planning for Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/plan/planning.html)
-  - [Installing Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html)
-- IBM Watson Knowledge Catalog version 3.5.x.
+- IBM Cloud Pak for Data 4.0 or later refreshes. For more information, see:
+  - [Planning for Cloud Pak for Data](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=planning)
+  - [Installing Cloud Pak for Data](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing)
+- IBM Watson Knowledge Catalog version 4.0
 
 It is also recommended that you have:
 
-- IBM Watson Machine Learning version 3.5.x
-- IBM Watson Studio version 3.5.x
+- IBM Watson Machine Learning version 4.0
+- IBM Watson Studio version 4.0
 
 _Architectures_
 
@@ -60,7 +60,7 @@ Palantir for IBM Cloud Pak for Data supports encryption at rest and in transit.
 
 Additionally, to install the software, you must have the following entitlement keys:
 
-- An IBM entitlement key that includes entitlements for Cloud Pak for Data and Palantir for Cloud Pak for Data. For details on how to get your entitlement key, see [Obtaining the installation files](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/installation-files.html) in the IBM Cloud Pak for Data documentation.  
+- An IBM entitlement key that includes entitlements for Cloud Pak for Data and Palantir for Cloud Pak for Data. To get your entitlement key, go to the [IBM Container Library](https://myibm.ibm.com/products-services/containerlibrary).  
 - A Palantir registration key. For details on how to get your registration key, see [Obtaining your registration key](#obtaining-your-registration-key)
 ​
 
